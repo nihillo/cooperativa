@@ -1,4 +1,4 @@
-package model;
+package model.producer;
 
 /**
  * Abstract class Producer - write a description of the class here

@@ -8,12 +8,12 @@ import java.util.Scanner;
  * @author Juan Barranco
  * @version 0.1
  */
-public class View
+public class ConsoleView
 {
     /**
      * Constructor 
      */
-    public View()
+    public ConsoleView()
     {
     }
     

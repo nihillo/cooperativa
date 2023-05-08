@@ -1,7 +1,8 @@
 package sampledata;
 import java.util.ArrayList;
-import model.Producer;
-import model.ProducerFactory;
+
+import model.producer.Producer;
+import model.producer.ProducerFactory;
 
 
 /**

@@ -1,4 +1,4 @@
-package model;
+package model.producer;
 
 public class BigProducer extends Producer {
 
