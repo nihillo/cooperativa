@@ -1,5 +1,4 @@
-package model;
-
+package model.producer;
 
 /**
  * Factoria de instanciacion de productores, dependiendo de la extension

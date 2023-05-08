@@ -1,4 +1,4 @@
-import view.View;
+import view.ConsoleView;
 
 /**
  * Clase principal de la aplicacion
@@ -17,7 +17,7 @@ public class Cooperativa
      * 3. Inicializa el menu y el bucle del prompt
      */
     public static void main() {
-        View view = new View();
+        ConsoleView view = new ConsoleView();
         view.print(title);
         
         view.print("Cargando datos de prueba...");
