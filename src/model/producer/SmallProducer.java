@@ -1,9 +1,13 @@
 package model.producer;
 
+import java.util.ArrayList;
+
 public class SmallProducer extends Producer {
-
-	public SmallProducer(String name, String crop, float extension) {
-		// TODO Auto-generated constructor stub
+	
+	public SmallProducer(String id, String name, ArrayList<Crop> crops) {
+		// TODO rehacer adecuadamente
+		super(id, name, crops);
+		
 	}
-
+	
 }

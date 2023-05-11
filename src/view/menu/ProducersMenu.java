@@ -12,7 +12,7 @@ public class ProducersMenu extends Menu {
 	) {
 		super();
 		this.title = "===== PRODUCTORES =====";
-		this.items.put("1", new MenuItem("Registrar productor", new RegisterProducerCommand(controller)));
+		this.items.put("1", new MenuItem("Registrar productor", new RegisterProducerCommand(view, controller)));
 		this.items.put("q", new MenuItem("Atrás", new MainMenuCommand(view)));
 	}
 

@@ -87,6 +87,10 @@ public class ConsoleView
         return endSignal;
     }
     
+    public Scanner getPrompt() {
+    	return prompt;
+    }
+    
     public void exit() {
     	
     }
