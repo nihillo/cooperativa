@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import controller.Controller;
 import controller.ProducerController;
+import controller.ProductController;
 import view.menu.MainMenu;
 import view.menu.Menu;
 import view.menu.MenuItem;
@@ -35,14 +36,19 @@ public class ConsoleView
     	
     	controllers = new HashMap<String, Controller>();
     	controllers.put("PRODUCER", new ProducerController());
+    	controllers.put("PRODUCT", new ProductController());
     	
     	menus = new HashMap<String, Menu>();
     	menus.put("MAIN_MENU", new MainMenu(this));
-    	menus.put("PRODUCERS_MENU", new ProducersMenu(this, controllers.get("PRODUCER")));
+    	menus.put("PRODUCERS_MENU", new ProducersMenu(this, (ProducerController) controllers.get("PRODUCER"), (ProductController) controllers.get("PRODUCT")));
 
     	setCurrentMenu("MAIN_MENU");
     }
     
+    /**
+     * Establece el menú actual, a partir de su ID
+     * @param menuID
+     */
     public void setCurrentMenu(String menuID) {
     	Menu menu = menus.get(menuID);
     	currentMenu = menu;
@@ -97,10 +103,5 @@ public class ConsoleView
 
 	public void setEndSignal(boolean b) {
 		endSignal = b;		
-	}
-
-	public void printHeader() {
-		// TODO Auto-generated method stub
-		
 	}
 }

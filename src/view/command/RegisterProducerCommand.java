@@ -3,23 +3,42 @@ package view.command;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import controller.Controller;
 import controller.ProducerController;
-import model.producer.Producer;
+import controller.ProductController;
 import view.ConsoleView;
 
-public class RegisterProducerCommand extends Command {
+/**
+ * Clase RegisterProducerCommand - Comando registrar productor
+ * Implementa la interfaz Command
+ * 
+ * @author Juan Barranco
+ * @version 0.1
+ */
+public class RegisterProducerCommand implements Command {
 	
 	private ConsoleView view;
+	private ProducerController producerController;
+	private ProductController productController;
 	
+	/**
+	 * Constructor
+	 * @param view
+	 * @param producerController
+	 * @param productController
+	 */
 	public RegisterProducerCommand(
 		ConsoleView view,
-		Controller controller
+		ProducerController producerController,
+		ProductController productController
 	) {
-		super(controller);
 		this.view = view;
+		this.producerController = producerController;
+		this.productController = productController;
 	}
 	
+	/**
+	 * Ejecuta la acción registrar productor
+	 */
 	public void execute() {
 		Scanner prompt = view.getPrompt();
 		
@@ -29,13 +48,14 @@ public class RegisterProducerCommand extends Command {
 		view.print("Introduzca nombre:");
 		String name = prompt.nextLine();
 		
+		String[] availableProductList = productController.getRegisteredProductList();
 		ArrayList<String> crops = new ArrayList<String>();
 		
 		boolean continueAddingCrops;
 		
 		do {
 			view.print("Introduzca cultivo (  producto,Ha  - p. ej.: ALMENDRA,2.1  )");
-			view.print("Productos disponibles: ALMENDRA, ACEITE, UVA, TOMATE, PIMIENTO"); // TODO obtener lista desde registrados
+			view.print("Productos disponibles: " + String.join(", ", availableProductList));
 			view.print("Introduzca cultivo:");
 			String crop = prompt.nextLine();
 			
@@ -53,8 +73,7 @@ public class RegisterProducerCommand extends Command {
 		} while (continueAddingCrops);
 		
 		
-		Producer producer = ((ProducerController) receiver).registerProducer(id, name, crops);
-		// TODO abrir menú productor con el productor creado
+		producerController.registerProducer(id, name, crops);
 	}
 
 }

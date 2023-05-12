@@ -2,6 +2,9 @@ package model.producer;
 
 import java.util.ArrayList;
 
+import model.product.Crop;
+import sampledata.SystemData;
+
 /**
  * Factoria de instanciacion de productores, dependiendo de la extension
  * de cultivos y el umbral definido para el año fiscal
@@ -11,19 +14,20 @@ import java.util.ArrayList;
  */
 public class ProducerFactory
 {	
-	private static final float BIG_PRODUCER_THRESHOLD = 5; 
+	private float threshold;
 	
     /**
      * Constructor
      */
     public ProducerFactory()
     {
+    	threshold = SystemData.getAnualThreshold();
     }
 
     /**
      * Metodo estatico para la generacion de productores
      * Devuelve SmallProducer si la extension con que se llama es inferior
-     * al umbral, GreatProducer si es igual o mayor
+     * al umbral, BigProducer si es igual o mayor
      * 
      * @param id   id del productor
      * @param name   nombre del productor
@@ -38,7 +42,7 @@ public class ProducerFactory
     		totalExtension += c.getExtension(); 
     	}
     	
-    	Producer producer = totalExtension < BIG_PRODUCER_THRESHOLD ? new SmallProducer(id, name, crops) : new BigProducer(id, name, crops);
+    	Producer producer = totalExtension < this.threshold ? new SmallProducer(id, name, crops) : new BigProducer(id, name, crops);
     	
     	return producer;
     }

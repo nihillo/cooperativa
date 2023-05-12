@@ -8,7 +8,7 @@ import view.ConsoleView;
  */
 public class Cooperativa
 {
-    private static String title = "Cooperativa - v0.1 - 2023";
+    private final static String APP_TITLE = "Cooperativa - v0.1 - 2023";
     private static boolean runningStatus = true;
     
     /**
@@ -20,7 +20,7 @@ public class Cooperativa
 
     public static void main(String[] args) {
     	ConsoleView view = new ConsoleView();
-        view.print(title);
+        view.print(APP_TITLE);
         view.print("");
         
         view.print("Cargando datos de prueba...");
@@ -28,12 +28,17 @@ public class Cooperativa
         view.print("Datos de prueba cargados");
         
         view.print("");
-        view.printMenu();
         
         
         while (runningStatus) {
-        	boolean promptStatus = view.prompt();
-        	runningStatus = !promptStatus;
+        	try {
+        		view.printMenu();
+            	boolean promptStatus = view.prompt();
+            	runningStatus = !promptStatus;
+        	} catch (Error e) {
+        		view.print("ERROR: " + e.getMessage());
+        	}
+        	
         }
         
         view.print("Saliendo.....");
