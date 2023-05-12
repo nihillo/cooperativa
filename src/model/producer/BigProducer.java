@@ -22,4 +22,9 @@ public class BigProducer extends Producer {
 		super(id, name, crops);
 	}
 
+	@Override
+	protected String getType() {
+		return "B";
+	}
+
 }

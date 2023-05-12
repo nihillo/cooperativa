@@ -1,7 +1,10 @@
 package view.menu;
 
+import java.util.ArrayList;
+
 import controller.ProducerController;
 import controller.ProductController;
+import model.producer.Producer;
 import view.ConsoleView;
 import view.command.SetMenuCommand;
 import view.command.RegisterProducerCommand;
@@ -15,6 +18,8 @@ import view.command.RegisterProducerCommand;
  */
 public class ProducersMenu extends Menu {
 	
+	private ProducerController producerController;
+	
 	/**
 	 * Constructor
 	 * @param view
@@ -27,9 +32,31 @@ public class ProducersMenu extends Menu {
 		ProductController productController
 	) {
 		super();
+		this.producerController = producerController;
+		
 		this.title = "===== PRODUCTORES =====";
-		this.items.put("1", new MenuItem("Registrar productor", new RegisterProducerCommand(view, producerController, productController)));
-		this.items.put("q", new MenuItem("Atrás", new SetMenuCommand(view, "MAIN_MENU")));
+		
+		updateDisplayItems();
+		
+		this.executableItems.put("1", new MenuExecutableItem("Registrar productor", new RegisterProducerCommand(view, producerController, productController)));
+		this.executableItems.put("q", new MenuExecutableItem("Atrás", new SetMenuCommand(view, "MAIN_MENU")));
+	}
+
+	@Override
+	public void refresh() {
+		updateDisplayItems();
+	}
+	
+	private void updateDisplayItems() {
+		this.clearDisplayItems();
+		
+		this.displayItems.add(new MenuItem("ID   --  TIPO  --   NOMBRE   --   CULTIVOS"));
+		
+		ArrayList<Producer> producers = producerController.getAllProducers();
+			
+		producers.forEach(producer -> {
+			this.displayItems.add(new MenuItem(producer.getInfoLine()));
+		});
 	}
 
 }

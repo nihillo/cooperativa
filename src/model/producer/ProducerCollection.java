@@ -1,5 +1,7 @@
 package model.producer;
 
+import java.util.ArrayList;
+
 import model.Collection;
 
 /**
@@ -55,5 +57,9 @@ public class ProducerCollection {
 	 */
 	public boolean contains(String id) {
 		return collection.contains(id);
+	}
+
+	public ArrayList<Producer> getAll() {
+		return collection.getAll();
 	}
 }

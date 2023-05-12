@@ -36,4 +36,9 @@ public class Crop {
 	public Product getProduct() {
 		return product;
 	}
+	
+	@Override
+	public String toString() {
+		return this.product.getId() + ": " + this.extension.toString();
+	}
 }

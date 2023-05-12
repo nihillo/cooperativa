@@ -22,4 +22,8 @@ public class FederateProducer extends Producer {
 		super(id, name, crops);
 	}
 
+	@Override
+	protected String getType() {
+		return "F";
+	}
 }
