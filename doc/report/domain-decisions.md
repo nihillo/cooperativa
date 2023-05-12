@@ -1,10 +1,13 @@
-### Productor
-- Los distintos productos que gestiona la coopera son predefinidos.
-- Las federaciones por producto no se crean en el momento en que dos productores lo deciden. Existen siempre de forma predefinida y los productores pueden asociarse a ellas en cualquier momento (siempre que cumplan los requisitos), lo cual significa que una federación puede no tener ningún productor.
-- La evolución de precios se maneja en cada producto, mediante de una lista de precios indexada por fecha.
+### Consideraciones generales
+- Para los temas derivados de temporalidad y fechas, se ha considerado para la carga de datos el contexto de un único año fiscal completo.
+Es decir, por ejemplo, para el umbral de pequeños a grandes productores se ha establecido un único valor fijo, y para la evolución semanal de precios de productos se han predefinido los correspondientes a cada una de las semanas de un año completo. 
+
+### Productor y producto
+- Los distintos productos que gestiona la cooperativa son predefinidos. No se puede registrar un productor que trabaja un producto distinto a los registrados.
+- La evolución de precios se maneja en cada producto, mediante de una lista de precios indexada por semana.
 
 ### Logística
-- El kilometraje de un envío se establece de forma explícita al hacer el pedido. No se guardan tablas de distancias ni se hacen cálculos sobre ellas.
+- El kilometraje de un envío se establece de forma explícita al hacer el pedido. No se guardan tablas de distancias ni se hacen cálculos sobre ellas. Si un pedido necesita dos etapas, una de gran logística y otra de pequeña logística para los km finales, se generan dos envíos de sus respectivos tipos de logística y sus respectivos kilometrajes.
 
 ### Cliente
 
