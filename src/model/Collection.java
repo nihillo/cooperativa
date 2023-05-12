@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -61,5 +62,10 @@ public class Collection<E> {
 	public String[] getIDs() {
 		String[] array = collection.keySet().toArray(new String[0]);
 		return array;
+	}
+	
+	public ArrayList<E> getAll() {
+		ArrayList<E> allElements = new ArrayList<>(collection.values());
+		return allElements;
 	}
 }

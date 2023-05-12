@@ -7,7 +7,7 @@ import controller.ProducerController;
 import controller.ProductController;
 import view.menu.MainMenu;
 import view.menu.Menu;
-import view.menu.MenuItem;
+import view.menu.MenuExecutableItem;
 import view.menu.ProducersMenu;
 
 
@@ -67,9 +67,15 @@ public class ConsoleView
      */
     public void printMenu() {
     	print("");
+    	print("------------------------");
+    	print("");
     	print(currentMenu.getTitle());
     	print("");
-        currentMenu.getItems().forEach((key, item) -> {
+    	currentMenu.getDisplayItems().forEach(displayItem -> {
+    		print(displayItem.getDisplayText());
+    	});
+    	print("");
+        currentMenu.getExecutableItems().forEach((key, item) -> {
         	print(key + " - " + item.getDisplayText());
         });
         print("");
@@ -84,9 +90,9 @@ public class ConsoleView
         print("Seleccione una opcion:");
         String key = prompt.nextLine();
         
-        MenuItem selectedItem = null;
-        if(currentMenu.getItems().containsKey(key)) {
-        	selectedItem = currentMenu.getItems().get(key);
+        MenuExecutableItem selectedItem = null;
+        if(currentMenu.getExecutableItems().containsKey(key)) {
+        	selectedItem = currentMenu.getExecutableItems().get(key);
         	selectedItem.executeCommand();
         }
         
@@ -103,5 +109,10 @@ public class ConsoleView
 
 	public void setEndSignal(boolean b) {
 		endSignal = b;		
+	}
+
+	public void refreshMenu(String menuID) {
+		Menu menu = menus.get(menuID);
+		menu.refresh();
 	}
 }

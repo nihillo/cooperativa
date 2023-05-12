@@ -22,7 +22,11 @@ public class MainMenu extends Menu{
 	) {
 		super();
 		this.title = "==== MENU PRINCIPAL ====";
-		this.items.put("1", new MenuItem("Productores", new SetMenuCommand(view, "PRODUCERS_MENU")));
-		this.items.put("q", new MenuItem("Salir", new QuitCommand(view)));
+		this.executableItems.put("1", new MenuExecutableItem("Productores", new SetMenuCommand(view, "PRODUCERS_MENU")));
+		this.executableItems.put("q", new MenuExecutableItem("Salir", new QuitCommand(view)));
+	}
+
+	@Override
+	public void refresh() {		
 	}
 }

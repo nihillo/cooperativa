@@ -13,7 +13,7 @@ import model.product.Crop;
  * @author Juan Barranco 
  * @version 0.1
  */
-public class Producer implements CollectionItem {
+public abstract class Producer implements CollectionItem {
 	protected String id;
 	protected String name;
 	protected ArrayList<Crop> crops;
@@ -36,4 +36,21 @@ public class Producer implements CollectionItem {
 	public String getId() {
 		return id;
 	}
+
+	public String getInfoLine() {
+		String cropsStr = "";
+
+		for (int i = 0; i < crops.size(); i++ ) {
+			Crop crop = crops.get(i);
+			cropsStr += crop.toString();
+			if (i < crops.size() - 1) {
+				cropsStr += ", ";
+			}
+		}
+		
+		String infoLine = this.id + "   --  " + this.getType() + "  --   " + this.name + "   --   " + cropsStr;
+		return infoLine;
+	}
+
+	protected abstract String getType();
 }

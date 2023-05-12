@@ -22,4 +22,8 @@ public class SmallProducer extends Producer {
 		super(id, name, crops);
 	}
 	
+	@Override
+	protected String getType() {
+		return "S";
+	}
 }
