@@ -1,10 +1,22 @@
-### Productor
-- Los distintos productos que gestiona la coopera son predefinidos.
-- Las federaciones por producto no se crean en el momento en que dos productores lo deciden. Existen siempre de forma predefinida y los productores pueden asociarse a ellas en cualquier momento (siempre que cumplan los requisitos), lo cual significa que una federación puede no tener ningún productor.
-- La evolución de precios se maneja en cada producto, mediante de una lista de precios indexada por fecha.
+### Consideraciones generales
+- Para los temas derivados de temporalidad y fechas, se ha considerado para la carga de datos el contexto de un único año fiscal completo.
+Es decir, por ejemplo, para el umbral de pequeños a grandes productores se ha establecido un único valor fijo, y para la evolución semanal de precios de productos se han predefinido los correspondientes a cada una de las semanas de un año completo. 
+
+### Productor y producto
+- Los distintos productos que gestiona la cooperativa son predefinidos. No se puede registrar un productor que trabaja un producto distinto a los registrados.
+- La evolución de precios se maneja en cada producto, mediante de una lista de precios indexada por semana.
 
 ### Logística
-- El kilometraje de un envío se establece de forma explícita al hacer el pedido. No se guardan tablas de distancias ni se hacen cálculos sobre ellas.
+- Se entiende como logística lo que comúnmente llamamos transportista, es decir, aquella empresa que se dedica al transporte de mercancías. En el sistema los hay de dos tipos, los que hacen envíos a larga distancia (gran logística), y los que lo hacen a pequeña distancia (pequeña logística). 
+- Para un pedido puede haber una o dos lineas de envío, dependiendo de si se necesita gran logística, pequeña logística, o una combinación de ambas.
+- Todos los envíos tienen como origen las instalaciones centrales de la cooperativa, que hemos localizado arbitrariamente en Albacete. No se tendrán en cuenta en el sistema las localizaciones de los productores ni la posibilidad de envíos desde éstas sin pasar por la central de la cooperativa.
+- El cálculo de las líneas de envío necesarias y sus kilometrajes se basa en las siguientes reglas:
+    - El envío en gran logística se determina a partir de la provincia de la dirección de envío, leida desde los dos primeros dígitos del código postal, y según tablas de distancias guardadas en los sets de datos de prueba. Sólo se hacen envíos a la España peninsular, por lo que no se aceptarán pedidos cuyo destino esté fuera de este territorio.
+    - Se calcula la distancia desde la capital de la provincia de destino hasta la localización exacta dividiendo entre 10 el valor numérico de los 3 últimos dígitos del código postal.(Esta lógica claramente no se corresponde con la realidad, pero es una forma de que este dato sea un valor calculado a partir de la dirección de envío, simplificándolo de acuerdo con el alcance y ámbito de este proyecto).
+    - Si el resultado es superior a 5km o se ha calculado que no es necesaria una linea de gran logística, se añade una linea de pequeña logística con esta distancia. En cualquier otro caso, se suma esta distancia a la linea de gran logística creada previamente.
+- No se establecen diferencias, en cuanto al cálculo de lineas de envío y kilometrajes, para envíos de productos perecederos y no perecederos. Las diferencias entre envíos de tipos de productos radicarán únicamente en el cálculo de sus costes, teniendo tablas de coste por km diferentes para cada uno de ellos.
+
+
 
 ### Cliente
 
