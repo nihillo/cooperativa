@@ -47,6 +47,9 @@ public class ProducersMenu extends Menu {
 		updateDisplayItems();
 	}
 	
+	/** 
+	 * Actualiza displayItems
+	 */
 	private void updateDisplayItems() {
 		this.clearDisplayItems();
 		

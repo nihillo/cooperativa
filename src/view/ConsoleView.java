@@ -99,20 +99,39 @@ public class ConsoleView
         return endSignal;
     }
     
+    /**
+     * Devuelve el prompt
+     * @return Scaner - prompt
+     */
     public Scanner getPrompt() {
     	return prompt;
     }
     
-    public void exit() {
-    	
-    }
-
+    /**
+     * Establece el atributo endSignal,
+     * que en caso de ser true hace que el bucle del prompt
+     * termine y se salga de la aplicación
+     * @param b boolean
+     */
 	public void setEndSignal(boolean b) {
 		endSignal = b;		
 	}
-
+	
+	/**
+	 * Refresca el menú identificado por menuID
+	 * @param menuID
+	 */
 	public void refreshMenu(String menuID) {
 		Menu menu = menus.get(menuID);
 		menu.refresh();
+	}
+	
+	/**
+	 * Carga datos de prueba
+	 */
+	public void loadSampleData() {
+		ProducerController producerController = (ProducerController) controllers.get("PRODUCER");
+		producerController.loadSampleProducers();
+		this.refreshMenu("PRODUCERS_MENU");
 	}
 }

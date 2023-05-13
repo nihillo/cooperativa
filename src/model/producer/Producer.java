@@ -52,5 +52,11 @@ public abstract class Producer implements CollectionItem {
 		return infoLine;
 	}
 
+	/**
+	 * Devuelve el flag de tipo de productor: 
+	 * B: gran productor, S: pequeño productor
+	 * F: productor federado
+	 * @return
+	 */
 	protected abstract String getType();
 }

@@ -55,9 +55,16 @@ public abstract class Menu {
 		return this.displayItems;
 	}
 	
+	/**
+	 * Limpia displayItems
+	 */
 	protected void clearDisplayItems() {
 		this.displayItems = new ArrayList<MenuItem>();
 	}
-
+	
+	/**
+	 * Refresca el menú, actualizando
+	 * la información que haya podido cambiar
+	 */
 	public abstract void refresh();
 }

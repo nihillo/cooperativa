@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import model.producer.Producer;
 import model.producer.ProducerCollection;
 import model.producer.ProducerFactory;
+import sampledata.SampleProducer;
+
 
 /**
  * Controlador de Productores. Punto de entrada a 
@@ -35,8 +37,21 @@ public class ProducerController extends Controller {
 		Producer producer = producerFactory.getProducer(id, name, cropStrArr);
 		producerCollection.add(producer);
 	}
-
+	
+	/**
+	 * Devuelve todos los productores
+	 * @return ArrayList<Producer> productores
+	 */
 	public ArrayList<Producer> getAllProducers() {
 		return producerCollection.getAll();
+	}
+	
+	/**
+	 * Carga los datos de prueba de productores
+	 */
+	public void loadSampleProducers() {
+		for (SampleProducer sampleProducer : SampleProducer.values()) {
+			registerProducer(sampleProducer.getID(), sampleProducer.getName(), sampleProducer.getCropStrArr());
+		}
 	}
 }
