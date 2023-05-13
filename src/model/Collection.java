@@ -64,6 +64,10 @@ public class Collection<E> {
 		return array;
 	}
 	
+	/**
+	 * Devuelve todos los elementos de la colección
+	 * @return ArrayList<E>
+	 */
 	public ArrayList<E> getAll() {
 		ArrayList<E> allElements = new ArrayList<>(collection.values());
 		return allElements;

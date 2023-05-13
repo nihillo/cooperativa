@@ -37,6 +37,10 @@ public class Crop {
 		return product;
 	}
 	
+	/**
+	 * Devuelve la representación en String
+	 * del objeto
+	 */
 	@Override
 	public String toString() {
 		return this.product.getId() + ": " + this.extension.toString();

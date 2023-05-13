@@ -58,7 +58,11 @@ public class ProducerCollection {
 	public boolean contains(String id) {
 		return collection.contains(id);
 	}
-
+	
+	/**
+	 * Obtiene la lista de todos los productores
+	 * @return ArrayList<Producer>
+	 */
 	public ArrayList<Producer> getAll() {
 		return collection.getAll();
 	}

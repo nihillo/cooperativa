@@ -24,7 +24,7 @@ public class Cooperativa
         view.print("");
         
         view.print("Cargando datos de prueba...");
-        // TODO cargar datos de prueba
+        view.loadSampleData();
         view.print("Datos de prueba cargados");
         
         view.print("");
