@@ -3,8 +3,10 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import controller.Controller;
+import controller.LogisticController;
 import controller.ProducerController;
 import controller.ProductController;
+import view.menu.LogisticsMenu;
 import view.menu.MainMenu;
 import view.menu.Menu;
 import view.menu.MenuExecutableItem;
@@ -37,12 +39,14 @@ public class ConsoleView
     	controllers = new HashMap<String, Controller>();
     	controllers.put("PRODUCER", new ProducerController());
     	controllers.put("PRODUCT", new ProductController());
+    	controllers.put("LOGISTIC", new LogisticController());
     	
     	menus = new HashMap<String, Menu>();
-    	menus.put("MAIN_MENU", new MainMenu(this));
-    	menus.put("PRODUCERS_MENU", new ProducersMenu(this, (ProducerController) controllers.get("PRODUCER"), (ProductController) controllers.get("PRODUCT")));
-
-    	setCurrentMenu("MAIN_MENU");
+    	menus.put("MAIN", new MainMenu(this));
+    	menus.put("PRODUCERS", new ProducersMenu(this, (ProducerController) controllers.get("PRODUCER"), (ProductController) controllers.get("PRODUCT")));
+    	menus.put("LOGISTICS", new LogisticsMenu(this, (LogisticController) controllers.get("LOGISTIC")));
+    	
+    	setCurrentMenu("MAIN");
     }
     
     /**
@@ -132,6 +136,10 @@ public class ConsoleView
 	public void loadSampleData() {
 		ProducerController producerController = (ProducerController) controllers.get("PRODUCER");
 		producerController.loadSampleProducers();
-		this.refreshMenu("PRODUCERS_MENU");
+		this.refreshMenu("PRODUCERS");
+		
+		LogisticController logisticController = (LogisticController) controllers.get("LOGISTIC");
+		logisticController.loadSampleLogistics();
+		this.refreshMenu("LOGISTICS");
 	}
 }

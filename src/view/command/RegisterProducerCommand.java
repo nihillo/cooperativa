@@ -74,7 +74,7 @@ public class RegisterProducerCommand implements Command {
 		
 		
 		producerController.registerProducer(id, name, crops);
-		view.refreshMenu("PRODUCERS_MENU");
+		view.refreshMenu("PRODUCERS");
 	}
 
 }

@@ -1,7 +1,7 @@
 package view.menu;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * Clase Menu
@@ -11,14 +11,14 @@ import java.util.HashMap;
  */
 public abstract class Menu {
 	protected ArrayList<MenuItem> displayItems;
-	protected HashMap<String, MenuExecutableItem> executableItems;
+	protected LinkedHashMap<String, MenuExecutableItem> executableItems;
 	protected String title;
 	
 	/**
 	 * Cosntructor
 	 */
 	public Menu() {
-		this.executableItems = new HashMap<String, MenuExecutableItem>();
+		this.executableItems = new LinkedHashMap<String, MenuExecutableItem>();
 		this.displayItems = new ArrayList<MenuItem>();
 	}
 	
@@ -43,7 +43,7 @@ public abstract class Menu {
 	 * Devuelve os elementos ejecutables del menú, indexados por clave
 	 * @return HashMap<String - clave, MenuItem - elemento>  
 	 */
-	public HashMap<String, MenuExecutableItem> getExecutableItems() {
+	public LinkedHashMap<String, MenuExecutableItem> getExecutableItems() {
 		return this.executableItems;
 	}
 	

@@ -39,7 +39,7 @@ public class ProducersMenu extends Menu {
 		updateDisplayItems();
 		
 		this.executableItems.put("1", new MenuExecutableItem("Registrar productor", new RegisterProducerCommand(view, producerController, productController)));
-		this.executableItems.put("q", new MenuExecutableItem("Atrás", new SetMenuCommand(view, "MAIN_MENU")));
+		this.executableItems.put("q", new MenuExecutableItem("Atrás", new SetMenuCommand(view, "MAIN")));
 	}
 
 	@Override

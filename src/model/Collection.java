@@ -1,7 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * Clase Collection. 
@@ -14,13 +14,13 @@ import java.util.HashMap;
  */
 public class Collection<E> {
 
-	private HashMap<String, E> collection;
+	private LinkedHashMap<String, E> collection;
 	
 	/**
 	 * Constructor de la clase Collection
 	 */
 	public Collection() {
-		collection = new HashMap<String, E>();
+		collection = new LinkedHashMap<String, E>();
 	}
 	
 	/**
