@@ -36,7 +36,7 @@ public abstract class Producer implements CollectionItem {
 	public String getId() {
 		return id;
 	}
-
+	
 	public String getInfoLine() {
 		String cropsStr = "";
 
