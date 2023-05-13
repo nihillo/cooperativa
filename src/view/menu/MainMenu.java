@@ -24,6 +24,7 @@ public class MainMenu extends Menu{
 		this.title = "==== MENU PRINCIPAL ====";
 		this.executableItems.put("1", new MenuExecutableItem("Productores", new SetMenuCommand(view, "PRODUCERS")));
 		this.executableItems.put("2", new MenuExecutableItem("Logística", new SetMenuCommand(view, "LOGISTICS")));
+		this.executableItems.put("3", new MenuExecutableItem("Clientes", new SetMenuCommand(view, "CUSTOMERS")));
 		this.executableItems.put("q", new MenuExecutableItem("Salir", new QuitCommand(view)));
 	}
 

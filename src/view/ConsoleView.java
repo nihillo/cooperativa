@@ -3,9 +3,11 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import controller.Controller;
+import controller.CustomerController;
 import controller.LogisticController;
 import controller.ProducerController;
 import controller.ProductController;
+import view.menu.CustomersMenu;
 import view.menu.LogisticsMenu;
 import view.menu.MainMenu;
 import view.menu.Menu;
@@ -40,11 +42,13 @@ public class ConsoleView
     	controllers.put("PRODUCER", new ProducerController());
     	controllers.put("PRODUCT", new ProductController());
     	controllers.put("LOGISTIC", new LogisticController());
+    	controllers.put("CUSTOMER", new CustomerController());
     	
     	menus = new HashMap<String, Menu>();
     	menus.put("MAIN", new MainMenu(this));
     	menus.put("PRODUCERS", new ProducersMenu(this, (ProducerController) controllers.get("PRODUCER"), (ProductController) controllers.get("PRODUCT")));
     	menus.put("LOGISTICS", new LogisticsMenu(this, (LogisticController) controllers.get("LOGISTIC")));
+    	menus.put("CUSTOMERS", new CustomersMenu(this, (CustomerController) controllers.get("CUSTOMER")));
     	
     	setCurrentMenu("MAIN");
     }
@@ -141,5 +145,9 @@ public class ConsoleView
 		LogisticController logisticController = (LogisticController) controllers.get("LOGISTIC");
 		logisticController.loadSampleLogistics();
 		this.refreshMenu("LOGISTICS");
+		
+		CustomerController customerController = (CustomerController) controllers.get("CUSTOMER");
+		customerController.loadSampleCustomers();
+		this.refreshMenu("CUSTOMERS");
 	}
 }

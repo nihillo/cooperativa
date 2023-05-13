@@ -8,6 +8,13 @@ import model.logistic.LogisticCollection;
 import model.logistic.SmallLogistic;
 import sampledata.SampleLogistic;
 
+/**
+ * Clase LogisticController
+ * Punto de entrada a casos de uso relacionados 
+ * con la logística
+ * @author Juan Barranco
+ *
+ */
 public class LogisticController extends Controller {
 	
 	private LogisticCollection logisticCollection;

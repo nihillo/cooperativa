@@ -32,6 +32,8 @@ public class LogisticsMenu extends Menu {
 		
 		this.title = "===== LOGÍSTICA =====";
 		
+		updateDisplayItems();
+		
 		this.executableItems.put("1", new MenuExecutableItem("Registrar empresa de logística", new RegisterLogisticCommand(view, this.logisticController)));
 		this.executableItems.put("q", new MenuExecutableItem("Atrás", new SetMenuCommand(view, "MAIN")));
 	}
