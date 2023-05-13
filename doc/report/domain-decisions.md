@@ -5,6 +5,7 @@ Es decir, por ejemplo, para el umbral de pequeños a grandes productores se ha e
 ### Productor y producto
 - Los distintos productos que gestiona la cooperativa son predefinidos. No se puede registrar un productor que trabaja un producto distinto a los registrados.
 - La evolución de precios se maneja en cada producto, mediante de una lista de precios indexada por semana.
+- Se interpreta la limitación de 5 cultivos a pequeños productores como un umbral más a partir del que serán considerados grandes productores. Un productor es considerado gran productor si pasa uno de los dos umbrales, el de superfice o el de número de cultivos (no necesariamente ambos a la vez).
 
 ### Logística
 - Se entiende como logística lo que comúnmente llamamos transportista, es decir, aquella empresa que se dedica al transporte de mercancías. En el sistema los hay de dos tipos, los que hacen envíos a larga distancia (gran logística), y los que lo hacen a pequeña distancia (pequeña logística). 
@@ -17,9 +18,8 @@ Es decir, por ejemplo, para el umbral de pequeños a grandes productores se ha e
 - No se establecen diferencias, en cuanto al cálculo de lineas de envío y kilometrajes, para envíos de productos perecederos y no perecederos. Las diferencias entre envíos de tipos de productos radicarán únicamente en el cálculo de sus costes, teniendo tablas de coste por km diferentes para cada uno de ellos.
 
 
-
 ### Cliente
 
 ### Pedido
-- Un pedido puede tener varias lineas de producto, pero sólo pueden ser de un tipo entre perecederos o no perecederos.
-- Un pedido puede tener uno o varios envíos, según si se necesita pequeña logística, gran logística o una combinación de ambas.
+- Un pedido sólo puede contener un único producto, para evitar la problemática que generaría con los envíos la mezcla de productos perecederos y no perecederos.
+- Un pedido puede tener una o varias líneas de envío, según si se necesita pequeña logística, gran logística o una combinación de ambas para poder hacer llegar el envío a destino.
