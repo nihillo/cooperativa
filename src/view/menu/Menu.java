@@ -1,6 +1,7 @@
 package view.menu;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
  * Clase Menu
@@ -8,15 +9,17 @@ import java.util.HashMap;
  * @author Juan Barranco
  * @version 0.1
  */
-public class Menu {
-	protected HashMap<String, MenuItem> items;
+public abstract class Menu {
+	protected ArrayList<MenuItem> displayItems;
+	protected LinkedHashMap<String, MenuExecutableItem> executableItems;
 	protected String title;
 	
 	/**
 	 * Cosntructor
 	 */
 	public Menu() {
-		this.items = new HashMap<String, MenuItem>();
+		this.executableItems = new LinkedHashMap<String, MenuExecutableItem>();
+		this.displayItems = new ArrayList<MenuItem>();
 	}
 	
 	/**
@@ -25,7 +28,7 @@ public class Menu {
 	 * @param character
 	 */
 	public void executeOption(String character) {
-		this.items.get(character).executeCommand();
+		this.executableItems.get(character).executeCommand();
 	}
 	
 	/**
@@ -37,10 +40,31 @@ public class Menu {
 	}
 	
 	/**
-	 * Devuelve os elementos del menú, indexados por clave
+	 * Devuelve os elementos ejecutables del menú, indexados por clave
 	 * @return HashMap<String - clave, MenuItem - elemento>  
 	 */
-	public HashMap<String, MenuItem> getItems() {
-		return this.items;
+	public LinkedHashMap<String, MenuExecutableItem> getExecutableItems() {
+		return this.executableItems;
 	}
+	
+	/**
+	 * Devuelve os elementos no ejecutables del menú, indexados por clave
+	 * @return HashMap<String - clave, MenuItem - elemento>  
+	 */
+	public ArrayList<MenuItem> getDisplayItems() {
+		return this.displayItems;
+	}
+	
+	/**
+	 * Limpia displayItems
+	 */
+	protected void clearDisplayItems() {
+		this.displayItems = new ArrayList<MenuItem>();
+	}
+	
+	/**
+	 * Refresca el menú, actualizando
+	 * la información que haya podido cambiar
+	 */
+	public abstract void refresh();
 }

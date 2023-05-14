@@ -3,11 +3,15 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import controller.Controller;
+import controller.CustomerController;
+import controller.LogisticController;
 import controller.ProducerController;
 import controller.ProductController;
+import view.menu.CustomersMenu;
+import view.menu.LogisticsMenu;
 import view.menu.MainMenu;
 import view.menu.Menu;
-import view.menu.MenuItem;
+import view.menu.MenuExecutableItem;
 import view.menu.ProducersMenu;
 
 
@@ -37,12 +41,16 @@ public class ConsoleView
     	controllers = new HashMap<String, Controller>();
     	controllers.put("PRODUCER", new ProducerController());
     	controllers.put("PRODUCT", new ProductController());
+    	controllers.put("LOGISTIC", new LogisticController());
+    	controllers.put("CUSTOMER", new CustomerController());
     	
     	menus = new HashMap<String, Menu>();
-    	menus.put("MAIN_MENU", new MainMenu(this));
-    	menus.put("PRODUCERS_MENU", new ProducersMenu(this, (ProducerController) controllers.get("PRODUCER"), (ProductController) controllers.get("PRODUCT")));
-
-    	setCurrentMenu("MAIN_MENU");
+    	menus.put("MAIN", new MainMenu(this));
+    	menus.put("PRODUCERS", new ProducersMenu(this, (ProducerController) controllers.get("PRODUCER"), (ProductController) controllers.get("PRODUCT")));
+    	menus.put("LOGISTICS", new LogisticsMenu(this, (LogisticController) controllers.get("LOGISTIC")));
+    	menus.put("CUSTOMERS", new CustomersMenu(this, (CustomerController) controllers.get("CUSTOMER")));
+    	
+    	setCurrentMenu("MAIN");
     }
     
     /**
@@ -67,9 +75,15 @@ public class ConsoleView
      */
     public void printMenu() {
     	print("");
+    	print("------------------------");
+    	print("");
     	print(currentMenu.getTitle());
     	print("");
-        currentMenu.getItems().forEach((key, item) -> {
+    	currentMenu.getDisplayItems().forEach(displayItem -> {
+    		print(displayItem.getDisplayText());
+    	});
+    	print("");
+        currentMenu.getExecutableItems().forEach((key, item) -> {
         	print(key + " - " + item.getDisplayText());
         });
         print("");
@@ -84,24 +98,56 @@ public class ConsoleView
         print("Seleccione una opcion:");
         String key = prompt.nextLine();
         
-        MenuItem selectedItem = null;
-        if(currentMenu.getItems().containsKey(key)) {
-        	selectedItem = currentMenu.getItems().get(key);
+        MenuExecutableItem selectedItem = null;
+        if(currentMenu.getExecutableItems().containsKey(key)) {
+        	selectedItem = currentMenu.getExecutableItems().get(key);
         	selectedItem.executeCommand();
         }
         
         return endSignal;
     }
     
+    /**
+     * Devuelve el prompt
+     * @return Scaner - prompt
+     */
     public Scanner getPrompt() {
     	return prompt;
     }
     
-    public void exit() {
-    	
-    }
-
+    /**
+     * Establece el atributo endSignal,
+     * que en caso de ser true hace que el bucle del prompt
+     * termine y se salga de la aplicación
+     * @param b boolean
+     */
 	public void setEndSignal(boolean b) {
 		endSignal = b;		
+	}
+	
+	/**
+	 * Refresca el menú identificado por menuID
+	 * @param menuID
+	 */
+	public void refreshMenu(String menuID) {
+		Menu menu = menus.get(menuID);
+		menu.refresh();
+	}
+	
+	/**
+	 * Carga datos de prueba
+	 */
+	public void loadSampleData() {
+		ProducerController producerController = (ProducerController) controllers.get("PRODUCER");
+		producerController.loadSampleProducers();
+		this.refreshMenu("PRODUCERS");
+		
+		LogisticController logisticController = (LogisticController) controllers.get("LOGISTIC");
+		logisticController.loadSampleLogistics();
+		this.refreshMenu("LOGISTICS");
+		
+		CustomerController customerController = (CustomerController) controllers.get("CUSTOMER");
+		customerController.loadSampleCustomers();
+		this.refreshMenu("CUSTOMERS");
 	}
 }

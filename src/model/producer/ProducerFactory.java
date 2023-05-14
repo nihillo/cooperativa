@@ -14,14 +14,16 @@ import sampledata.SystemData;
  */
 public class ProducerFactory
 {	
-	private float threshold;
+	private float extensionThreshold;
+	private int cropsNoThreshold;
 	
     /**
      * Constructor
      */
     public ProducerFactory()
     {
-    	threshold = SystemData.getAnualThreshold();
+    	extensionThreshold = SystemData.getAnualExtensionThreshold();
+    	cropsNoThreshold = SystemData.getCropsNoThreshold();
     }
 
     /**
@@ -42,7 +44,12 @@ public class ProducerFactory
     		totalExtension += c.getExtension(); 
     	}
     	
-    	Producer producer = totalExtension < this.threshold ? new SmallProducer(id, name, crops) : new BigProducer(id, name, crops);
+    	Producer producer = null; 
+    	if (totalExtension < this.extensionThreshold && crops.size() <= this.cropsNoThreshold) {
+    		producer = new SmallProducer(id, name, crops);
+    	} else {
+    		producer = new BigProducer(id, name, crops);
+    	}
     	
     	return producer;
     }

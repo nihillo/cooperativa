@@ -1,26 +1,23 @@
 package view.menu;
 
-import view.command.Command;
-
 /**
- * Clase MenuItem
- * Define un elemento de menú
+ * Clase MenuExecutableItem
+ * Define un elemento genérico de menú, p. ej. una
+ * linea de información a imprimir
  * 
  * @author Juan Barranco
  * @version 0.1
  */
 public class MenuItem {
-	String displayText;
-	Command command;
+	protected String displayText;
 	
 	/**
 	 * Constructor
 	 * @param displayText
 	 * @param command
 	 */
-	public MenuItem(String displayText, Command command) {
+	public MenuItem(String displayText) {
 		this.displayText = displayText;
-		this.command = command;
 	}
 	
 	/**
@@ -31,11 +28,4 @@ public class MenuItem {
 		return displayText;
 	}
 	
-	/**
-	 * Ejecuta el comando asociado
-	 * @return
-	 */
-	public void executeCommand() {
-		command.execute();		
-	}
 }

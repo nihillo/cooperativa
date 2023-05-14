@@ -22,4 +22,11 @@ public class SmallProducer extends Producer {
 		super(id, name, crops);
 	}
 	
+	/**
+	 * Devuelve el flag de tipo de productor
+	 */
+	@Override
+	protected String getType() {
+		return "S";
+	}
 }

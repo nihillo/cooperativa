@@ -1,6 +1,7 @@
 package model;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
  * Clase Collection. 
@@ -13,13 +14,13 @@ import java.util.HashMap;
  */
 public class Collection<E> {
 
-	private HashMap<String, E> collection;
+	private LinkedHashMap<String, E> collection;
 	
 	/**
 	 * Constructor de la clase Collection
 	 */
 	public Collection() {
-		collection = new HashMap<String, E>();
+		collection = new LinkedHashMap<String, E>();
 	}
 	
 	/**
@@ -61,5 +62,14 @@ public class Collection<E> {
 	public String[] getIDs() {
 		String[] array = collection.keySet().toArray(new String[0]);
 		return array;
+	}
+	
+	/**
+	 * Devuelve todos los elementos de la colección
+	 * @return ArrayList<E>
+	 */
+	public ArrayList<E> getAll() {
+		ArrayList<E> allElements = new ArrayList<>(collection.values());
+		return allElements;
 	}
 }
