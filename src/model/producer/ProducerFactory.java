@@ -37,7 +37,7 @@ public class ProducerFactory
      * @return     Producer
      */
     public Producer getProducer(String id, String name, ArrayList<String> cropStrArr) {
-    	ArrayList<Crop> crops = buildCrops(cropStrArr);
+    	ArrayList<Crop> crops = buildCrops(cropStrArr, id);
     	float totalExtension = 0;
     	
     	for (Crop c : crops) {
@@ -54,7 +54,7 @@ public class ProducerFactory
     	return producer;
     }
     
-    private ArrayList<Crop> buildCrops(ArrayList<String> cropStrArr) {
+    private ArrayList<Crop> buildCrops(ArrayList<String> cropStrArr, String producerID) {
     	ArrayList<Crop> crops = new ArrayList<Crop>();
     	
     	cropStrArr.forEach(cropStr -> {
@@ -62,7 +62,7 @@ public class ProducerFactory
     		String productID = cropStrParts[0];
     		float extension = Float.parseFloat(cropStrParts[1]);
     		
-    		Crop crop = new Crop(productID, extension);
+    		Crop crop = new Crop(producerID, productID, extension);
     		crops.add(crop);    		
     	});
     	
