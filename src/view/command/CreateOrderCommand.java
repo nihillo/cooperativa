@@ -133,8 +133,8 @@ public class CreateOrderCommand implements Command {
 	
 	private int promptQty(Scanner prompt, Product product, Customer customer) {
 		int qty = 0;
-		boolean productAvailable = false;
-		while (qty == 0 || !productAvailable) {
+		boolean saleAllowed = false;
+		while (qty == 0 || !saleAllowed) {
 			view.print("Introduzca cantidad (kg):");
 			String qtyStr = prompt.nextLine();
 			try {
@@ -144,14 +144,19 @@ public class CreateOrderCommand implements Command {
 			}
 			
 			int productStock = product.getStock();
-			int maxAllowedQtyForCustomer = customer.getMaxQtyAllowed();
-			if (productStock < qty) {
+			int[] customerAllowedQtyRange = customer.getAllowedQtyRange();
+			
+			boolean productAvailable = (qty <= productStock);
+			boolean qtyAllowed = (qty >= customerAllowedQtyRange[0] && qty <= customerAllowedQtyRange[1]);
+			
+			if (!productAvailable) {
 				view.print("Cantidad de producto no disponible. Introduzca un máximo de " + productStock + " kg.");
-			} else if (maxAllowedQtyForCustomer < qty) {
-				view.print("La máxima cantidad permitida para este tipo de cliente es de " + maxAllowedQtyForCustomer + " kg.");
-			} else {
-				productAvailable = true;
-			}
+			} 
+			
+			if (!qtyAllowed) {
+				view.print("La cantidad permitida para este tipo de cliente es de entre " + customerAllowedQtyRange[0] + " y " + customerAllowedQtyRange[1] + " kg.");
+			} 
+			saleAllowed = productAvailable && qtyAllowed;
 		}
 			
 		return qty;

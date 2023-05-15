@@ -28,10 +28,12 @@ public class StockistCustomer extends Customer {
 	}
 
 	@Override
-	public int getMaxQtyAllowed() {
-		// ilimitado a efectos prácticos,
-		// devolvemos el máximo permitido para int
-		return 2147483647;
+	public int[] getAllowedQtyRange() {
+		// mínimo 1 T = 1000 kg,
+		// máximo ilimitado a efectos prácticos,
+		// devolvemos un valor arbitrariamente alto
+		int[] range = {1000, 1000000000};
+		return range;
 	}
 
 }

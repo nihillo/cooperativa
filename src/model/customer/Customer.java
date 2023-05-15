@@ -43,7 +43,7 @@ public abstract class Customer implements CollectionItem {
 
 	public abstract double getCoopBenefit();
 
-	public abstract int getMaxQtyAllowed();
+	public abstract int[] getAllowedQtyRange();
 
 	public Address getAddress() {
 		return this.address;

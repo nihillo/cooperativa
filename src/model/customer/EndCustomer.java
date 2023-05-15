@@ -29,8 +29,10 @@ public class EndCustomer extends Customer {
 	}
 
 	@Override
-	public int getMaxQtyAllowed() {
-		return 100;
+	public int[] getAllowedQtyRange() {
+		// min 1, max 100
+		int[] range = {1, 100};
+		return range;
 	}
 
 }
