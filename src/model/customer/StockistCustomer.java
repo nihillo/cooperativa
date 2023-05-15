@@ -22,4 +22,9 @@ public class StockistCustomer extends Customer {
 		return "S";
 	}
 
+	@Override
+	public double getCoopBenefit() {
+		return 1.05;
+	}
+
 }

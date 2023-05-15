@@ -40,4 +40,6 @@ public abstract class Customer implements CollectionItem {
 	}
 	
 	public abstract String getType();
+
+	public abstract double getCoopBenefit();
 }

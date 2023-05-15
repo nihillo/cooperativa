@@ -5,6 +5,7 @@ import java.util.Scanner;
 import controller.Controller;
 import controller.CustomerController;
 import controller.LogisticController;
+import controller.OrderController;
 import controller.ProducerController;
 import controller.ProductController;
 import view.menu.CustomersMenu;
@@ -12,6 +13,7 @@ import view.menu.LogisticsMenu;
 import view.menu.MainMenu;
 import view.menu.Menu;
 import view.menu.MenuExecutableItem;
+import view.menu.OrdersMenu;
 import view.menu.ProducersMenu;
 
 
@@ -43,12 +45,15 @@ public class ConsoleView
     	controllers.put("PRODUCT", new ProductController());
     	controllers.put("LOGISTIC", new LogisticController());
     	controllers.put("CUSTOMER", new CustomerController());
+    	controllers.put("ORDER", new OrderController());
     	
     	menus = new HashMap<String, Menu>();
     	menus.put("MAIN", new MainMenu(this));
     	menus.put("PRODUCERS", new ProducersMenu(this, (ProducerController) controllers.get("PRODUCER"), (ProductController) controllers.get("PRODUCT")));
     	menus.put("LOGISTICS", new LogisticsMenu(this, (LogisticController) controllers.get("LOGISTIC")));
-    	menus.put("CUSTOMERS", new CustomersMenu(this, (CustomerController) controllers.get("CUSTOMER")));
+    	menus.put("CUSTOMERS", 
+    			new CustomersMenu(this, (CustomerController) controllers.get("CUSTOMER"), (OrderController) controllers.get("ORDER"), (ProductController) controllers.get("PRODUCT")));
+    	menus.put("ORDERS",  new OrdersMenu(this, (OrderController) controllers.get("ORDER")));
     	
     	setCurrentMenu("MAIN");
     }
@@ -96,7 +101,7 @@ public class ConsoleView
      */
     public boolean prompt() {   	
         print("Seleccione una opcion:");
-        String key = prompt.nextLine();
+        String key = prompt.nextLine().toLowerCase();
         
         MenuExecutableItem selectedItem = null;
         if(currentMenu.getExecutableItems().containsKey(key)) {

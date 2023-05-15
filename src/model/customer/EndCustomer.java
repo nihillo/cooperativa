@@ -23,4 +23,9 @@ public class EndCustomer extends Customer {
 		return "E";
 	}
 
+	@Override
+	public double getCoopBenefit() {
+		return 1.15;
+	}
+
 }

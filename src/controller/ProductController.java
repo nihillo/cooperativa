@@ -1,5 +1,6 @@
 package controller;
 
+import model.product.Product;
 import model.product.ProductCollection;
 
 /**
@@ -27,5 +28,9 @@ public class ProductController extends Controller {
 	public String[] getRegisteredProductList() {
 		String[] productIDs = productCollection.getAllProductIDs();
 		return productIDs; 				
+	}
+
+	public Product getProduct(String productID) {
+		return productCollection.get(productID);
 	}
 }

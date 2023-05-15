@@ -7,7 +7,7 @@ import view.ConsoleView;
 
 /**
  * Clase RegisterCustomerCommand - comando registrar cliente
- * @author nihillo
+ * @author Juan Barranco
  *
  */
 public class RegisterCustomerCommand implements Command {

@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import model.order.Order;
+
 /**
  * Clase Collection. 
  * Nucleo a usar por composición por todas las 
@@ -71,5 +73,13 @@ public class Collection<E> {
 	public ArrayList<E> getAll() {
 		ArrayList<E> allElements = new ArrayList<>(collection.values());
 		return allElements;
+	}
+
+	public Order getLast() {
+		return (Order) collection.entrySet().toArray()[collection.size() -1];
+	}
+
+	public int size() {
+		return collection.size();
 	}
 }

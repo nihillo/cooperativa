@@ -65,6 +65,14 @@ public class CustomerController extends Controller {
 	}
 	
 	/**
+	 * Devuelve un cliente por su ID
+	 * @return Customer customers
+	 */
+	public Customer getCustomer(String id) {
+		return customerCollection.get(id);
+	}
+	
+	/**
 	 * Carga los datos de prueba de clientes
 	 */
 	public void loadSampleCustomers() {

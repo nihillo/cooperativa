@@ -2,8 +2,11 @@ package model.product;
 
 public class Crop {
 	
+	private String id;
+	private String producerID;
 	private Product product;
 	private Float extension;
+	private int production;
 	
 	
 	/**
@@ -15,10 +18,32 @@ public class Crop {
 	 * @author Juan Barranco 
 	 * @version 0.1
 	 */
-	public Crop(String productID, Float extension) {
+	public Crop(String producerID, String productID, Float extension) {
+		this.id = producerID + productID;
+		
 		ProductCollection productCollection = ProductCollection.getInstance();
 		this.product = productCollection.getProduct(productID);
-		this.extension  = extension;
+		this.producerID = producerID;
+		this.extension = extension;
+		this.production = (int) (this.extension * this.product.getPerformance());
+		
+		this.product.registerCrop(this);
+	}
+	
+	/**
+	 * Devuelve el id del productor
+	 * @return
+	 */
+	public String getProducerID() {
+		return producerID;
+	}
+
+	/**
+	 * Devuelve el id del cultivo
+	 * @return String id
+	 */
+	public String getID() {
+		return id;
 	}
 	
 	/**
@@ -35,6 +60,14 @@ public class Crop {
 	 */
 	public Product getProduct() {
 		return product;
+	}
+	
+	/**
+	 * Devuelve la producción en kg anual del cultivo
+	 * @return int kg
+	 */
+	public int getProduction() {
+		return production;
 	}
 	
 	/**

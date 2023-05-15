@@ -1,16 +1,17 @@
-package model.customer;
+package model.order;
 
 import java.util.ArrayList;
 
 import model.Collection;
 
+
 /**
- * Clase CustomerCollection  (Colección de empresas de logística)
+ * Clase OrderCollection  (Colección de pedidos)
  * 
  * Wrapper de Collection (utiliza por composición la clase Collection,
  * como objeto interno en donde almacena los CollectionItems). Sobre esta, 
  * implementa los métodos propios específicos derivados de la naturaleza
- * de los objetos Customer, que no comparten interfaz con otras colecciones
+ * de los objetos Order, que no comparten interfaz con otras colecciones
  * 
  * Sigue patrón Singleton, de modo que exista una única instancia
  * accesible desde múltiples clientes sin que necesiten mantener trazabilidad
@@ -19,23 +20,23 @@ import model.Collection;
  * @author Juan Barranco 
  * @version 0.1
  */
-public class CustomerCollection {
-
-	private static CustomerCollection instance;
-	private Collection<Customer> collection;
+public class OrderCollection {
 	
-	private CustomerCollection() {
-		collection = new Collection<Customer>();
+	private static OrderCollection instance;
+	private Collection<Order> collection;
+	
+	private OrderCollection() {
+		collection = new Collection<Order>();
 	}
 	
 	/**
 	 * Método estático que devuelve la instancia
 	 * singleton de la clase
-	 * @return CustomerCollection
+	 * @return OrderCollection
 	 */
-	public static CustomerCollection getInstance() {
+	public static OrderCollection getInstance() {
 		if (instance == null) {
-			instance = new CustomerCollection();
+			instance = new OrderCollection();
 		}
 		
 		return instance;
@@ -43,31 +44,41 @@ public class CustomerCollection {
 	
 	/**
 	 * Verifica si la colección contiene un 
-	 * cliente a partir de su ID
+	 * pedido a partir de su ID
 	 * @param id
 	 * @return boolean
 	 */
 	public boolean contains(String id) {
 		return collection.contains(id);
 	}
-
+	
 	/**
 	 * Añade un productor a la colección
-	 * @param customer
+	 * @param order
 	 */
-	public void add(Customer customer) {
-		collection.add(customer);
+	public void add(Order order) {
+		collection.add(order);
 	}
 	
 	/**
-	 * Obtiene la lista de todos los clientes
-	 * @return ArrayList<Customer>
+	 * Obtiene la lista de todos los pedidos
+	 * @return ArrayList<Order>
 	 */
-	public ArrayList<Customer> getAll() {
+	public ArrayList<Order> getAll() {
 		return collection.getAll();
 	}
-
-	public Customer get(String id) {
+	
+	public Order get(String id) {
 		return collection.get(id);
+	}
+	
+	public String getNextAvailableOrderID() {
+		if (collection.size() == 0) {
+			return "001";
+		}
+		Order lastOrder = collection.getLast();
+		String lastID = lastOrder.getId();
+		
+		return String.format("%03d", Integer.parseInt(lastID)+1);
 	}
 }
