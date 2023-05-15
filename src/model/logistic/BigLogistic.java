@@ -16,10 +16,7 @@ public class BigLogistic extends Logistic {
 	 */
 	public BigLogistic(String id, String name) {
 		super(id, name);
-	}
-
-	@Override
-	protected String getType() {
-		return "Gran L";
+		this.type = LogisticType.BIG_LOGISTIC;
+		this.typeLabel = "Gran L";
 	}
 }

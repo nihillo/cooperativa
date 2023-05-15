@@ -6,6 +6,7 @@ import model.logistic.BigLogistic;
 import model.logistic.Logistic;
 import model.logistic.LogisticCollection;
 import model.logistic.SmallLogistic;
+import model.order.Order;
 import sampledata.SampleLogistic;
 
 /**
@@ -68,6 +69,10 @@ public class LogisticController extends Controller {
 		for (SampleLogistic sampleLogistic : SampleLogistic.values()) {
 			registerLogistic(sampleLogistic.getID(), sampleLogistic.getName(), sampleLogistic.getType());
 		}
+	}
+
+	public void generateShipmentQuotes(Order order) {
+		int t = 1;		
 	}
 
 }

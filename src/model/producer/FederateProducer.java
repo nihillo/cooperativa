@@ -2,6 +2,7 @@ package model.producer;
 
 import java.util.ArrayList;
 
+import model.producer.Producer.ProducerType;
 import model.product.Crop;
 
 /**
@@ -20,13 +21,7 @@ public class FederateProducer extends Producer {
 	 */
 	public FederateProducer(String id, String name, ArrayList<Crop> crops) {
 		super(id, name, crops);
-	}
-	
-	/**
-	 * Devuelve el flag de tipo de productor
-	 */
-	@Override
-	protected String getType() {
-		return "Fed";
+		this.type = ProducerType.FEDERATE_PRODUCER;
+		this.typeLabel = "Fed. P"; 
 	}
 }

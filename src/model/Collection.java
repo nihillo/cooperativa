@@ -3,8 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-import model.order.Order;
-
 /**
  * Clase Collection. 
  * Nucleo a usar por composición por todas las 

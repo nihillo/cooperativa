@@ -15,11 +15,8 @@ public class StockistCustomer extends Customer {
 	 */
 	public StockistCustomer(String id, String name, Address addressObj) {
 		super(id, name, addressObj);
-	}
-
-	@Override
-	public String getType() {
-		return "Dist.";
+		this.type = CustomerType.STOCKIST;
+		this.typeLabel = "Dist.";
 	}
 
 	@Override

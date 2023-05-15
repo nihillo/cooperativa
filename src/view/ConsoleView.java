@@ -52,7 +52,13 @@ public class ConsoleView
     	menus.put("PRODUCERS", new ProducersMenu(this, (ProducerController) controllers.get("PRODUCER"), (ProductController) controllers.get("PRODUCT")));
     	menus.put("LOGISTICS", new LogisticsMenu(this, (LogisticController) controllers.get("LOGISTIC")));
     	menus.put("CUSTOMERS", 
-    			new CustomersMenu(this, (CustomerController) controllers.get("CUSTOMER"), (OrderController) controllers.get("ORDER"), (ProductController) controllers.get("PRODUCT")));
+    			new CustomersMenu(
+    					this, 
+    					(CustomerController) controllers.get("CUSTOMER"), 
+    					(OrderController) controllers.get("ORDER"), 
+    					(ProductController) controllers.get("PRODUCT"),
+    					(LogisticController) controllers.get("LOGISTIC")
+    	));
     	menus.put("ORDERS",  new OrdersMenu(this, (OrderController) controllers.get("ORDER")));
     	
     	setCurrentMenu("MAIN");

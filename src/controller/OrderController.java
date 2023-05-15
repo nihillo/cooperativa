@@ -11,7 +11,6 @@ import model.order.Order;
 import model.order.OrderCollection;
 import model.product.Product;
 import sampledata.SystemData;
-import view.command.PlaceOrderCommand;
 
 /**
  * Clase OrderController
@@ -58,15 +57,13 @@ public class OrderController extends Controller {
 		return placementDate;
 	}
 	
-	public void createOrder(Customer customer, Date deliveryDate, Product product, int qty, PlaceOrderCommand placeOrderCommand) {
+	public Order createOrder(Customer customer, Date deliveryDate, Product product, int qty) {
 		String orderID = orderCollection.getNextAvailableOrderID();
 		Date placementDate = getPlacementDate(deliveryDate);
 				
 		Order order = new Order(orderID, customer, placementDate, deliveryDate, product, qty);
 		orderCollection.add(order);
-		
-		// generate logistic quotes
-		// execute placeOrderCommand		
+		return order;
 	}
 	
 	public void placeOrder() {

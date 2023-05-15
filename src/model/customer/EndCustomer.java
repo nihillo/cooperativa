@@ -1,5 +1,7 @@
 package model.customer;
 
+import model.customer.Customer.CustomerType;
+
 /**
  * Clase EndCustomer (Cliente final)
  * Hereda de Customer
@@ -16,11 +18,8 @@ public class EndCustomer extends Customer {
 	 */
 	public EndCustomer(String id, String name, Address addressObj) {
 		super(id, name, addressObj);
-	}
-
-	@Override
-	public String getType() {
-		return "Final";
+		this.type = CustomerType.ENDCUSTOMER;
+		this.typeLabel = "Final";
 	}
 
 	@Override

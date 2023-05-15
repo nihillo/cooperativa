@@ -1,7 +1,5 @@
 package model.order;
 
-import java.util.Date;
-
 import model.product.Product;
 
 public class ProductLine {

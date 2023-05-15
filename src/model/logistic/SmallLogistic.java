@@ -16,11 +16,7 @@ public class SmallLogistic extends Logistic {
 	 */
 	public SmallLogistic(String id, String name) {
 		super(id, name);
+		this.type = LogisticType.SMALL_LOGISTIC;
+		this.typeLabel = "Peq. L";
 	}
-
-	@Override
-	protected String getType() {
-		return "Peq. L";
-	}
-
 }

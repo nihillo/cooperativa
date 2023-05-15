@@ -9,10 +9,14 @@ import model.CollectionItem;
  * @author Juan Barranco
  *
  */
-public abstract class Logistic implements CollectionItem {
+public class Logistic implements CollectionItem {
+	
+	protected enum LogisticType { BIG_LOGISTIC, SMALL_LOGISTIC }
 	
 	private String id;
 	private String name;
+	protected LogisticType type;
+	protected String typeLabel;
 	
 	/**
 	 * Constructor
@@ -37,7 +41,7 @@ public abstract class Logistic implements CollectionItem {
 	 * @return String infoLine
 	 */
 	public String getInfoLine() {
-		String infoLine = this.id + "   --  " + this.getType() + "  --   " + this.name;
+		String infoLine = this.id + "   --  " + this.getTypeLabel() + "  --   " + this.name;
 		return infoLine;
 	}
 	
@@ -46,5 +50,11 @@ public abstract class Logistic implements CollectionItem {
 	 * B: gran logística, S: pequeña logística
 	 * @return
 	 */
-	protected abstract String getType();
+	public LogisticType getType() {
+		return this.type;
+	}
+	
+	public String getTypeLabel() {
+		return this.typeLabel;
+	}
 }

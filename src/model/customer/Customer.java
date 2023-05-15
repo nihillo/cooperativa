@@ -9,9 +9,13 @@ import model.CollectionItem;
  */
 public abstract class Customer implements CollectionItem {
 	
+	protected enum CustomerType { STOCKIST, ENDCUSTOMER }
+	
 	private String id;
 	private String name;
 	private Address address;
+	protected CustomerType type;
+	protected String typeLabel;
 	
 	/**
 	 * Constructor
@@ -29,18 +33,24 @@ public abstract class Customer implements CollectionItem {
 	public String getId() {
 		return this.id;
 	}
+	
+	public CustomerType getType() {
+		return this.type;
+	}
+	
+	public String getTypeLabel() {
+		return this.typeLabel;
+	}
 
 	/**
 	 * Devuelve la linea de información del cliente
 	 * @return String infoLine
 	 */
 	public String getInfoLine() {
-		String infoLine = this.id + "   --  " + this.getType() + "  --   " + this.name + "   --   "  + this.address.getCityProvince();
+		String infoLine = this.id + "   --  " + this.getTypeLabel() + "  --   " + this.name + "   --   "  + this.address.getCityProvince();
 		return infoLine;
 	}
 	
-	public abstract String getType();
-
 	public abstract double getCoopBenefit();
 
 	public abstract int[] getAllowedQtyRange();

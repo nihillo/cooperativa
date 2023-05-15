@@ -4,9 +4,11 @@ import java.util.Date;
 import java.util.Scanner;
 
 import controller.CustomerController;
+import controller.LogisticController;
 import controller.OrderController;
 import controller.ProductController;
 import model.customer.Customer;
+import model.order.Order;
 import model.product.Product;
 import view.ConsoleView;
 
@@ -21,6 +23,7 @@ public class CreateOrderCommand implements Command {
 	private OrderController orderController;	
 	private CustomerController customerController;
 	private ProductController productController;
+	private LogisticController logisticController;
 	
 	/**
 	 * Constructor
@@ -31,12 +34,14 @@ public class CreateOrderCommand implements Command {
 		ConsoleView view, 
 		OrderController orderController, 
 		CustomerController customerController, 
-		ProductController productController
+		ProductController productController,
+		LogisticController logisticController
 	) {
 		this.view = view;
 		this.orderController = orderController;
 		this.customerController = customerController;
 		this.productController = productController;
+		this.logisticController = logisticController;
 	}
 	
 	/**
@@ -54,14 +59,17 @@ public class CreateOrderCommand implements Command {
 		int qty = promptQty(prompt, product, customer);
 		boolean accept = promptAcceptOrder(prompt, product.getId(), qty, product.getPrice(placementDate)*qty*customer.getCoopBenefit());
 		
-		if (accept) {
-			// creamos objeto PlaceOrderCommand y se lo pasamos
-			// al controlador para que le devuelva el control una vez 
-			// inicializado el pedido y generadas las ofertas de logística
-			PlaceOrderCommand placeOrderCommand = new PlaceOrderCommand(view, orderController);
-			
-			orderController.createOrder(customer, deliveryDate, product, qty, placeOrderCommand);
-		}			
+		// no continuar a la creación del pedido si el usuario no lo acepta
+		if (!accept) return;
+	
+		Order order = orderController.createOrder(customer, deliveryDate, product, qty);
+		
+		// generar ofertas de logística
+		logisticController.generateShipmentQuotes(order);
+		
+		// prompt logistic quote
+		// place order
+						
 	}
 
 	private boolean promptAcceptOrder(Scanner prompt, String productID, int qty, double cost) {
