@@ -3099,7 +3099,7 @@
 											"font": "Arial;13;1",
 											"left": 869,
 											"top": 87,
-											"width": 94.31982421875,
+											"width": 95.03076171875,
 											"height": 13,
 											"text": "Order"
 										},
@@ -3134,7 +3134,7 @@
 									"font": "Arial;13;0",
 									"left": 864,
 									"top": 80,
-									"width": 104.31982421875,
+									"width": 105.03076171875,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGHPYUCrYkXIFo="
@@ -3171,7 +3171,7 @@
 											"font": "Arial;13;0",
 											"left": 869,
 											"top": 110,
-											"width": 94.31982421875,
+											"width": 95.03076171875,
 											"height": 13,
 											"text": "+orderID",
 											"horizontalAlignment": 0
@@ -3188,9 +3188,9 @@
 											"font": "Arial;13;0",
 											"left": 869,
 											"top": 125,
-											"width": 94.31982421875,
+											"width": 95.03076171875,
 											"height": 13,
-											"text": "+datePlacement",
+											"text": "+placementDate",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3205,9 +3205,9 @@
 											"font": "Arial;13;0",
 											"left": 869,
 											"top": 140,
-											"width": 94.31982421875,
+											"width": 95.03076171875,
 											"height": 13,
-											"text": "+dateDelivery",
+											"text": "+deliveryDate",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3222,7 +3222,7 @@
 											"font": "Arial;13;0",
 											"left": 869,
 											"top": 155,
-											"width": 94.31982421875,
+											"width": 95.03076171875,
 											"height": 13,
 											"text": "+customer",
 											"horizontalAlignment": 0
@@ -3239,7 +3239,7 @@
 											"font": "Arial;13;0",
 											"left": 869,
 											"top": 170,
-											"width": 94.31982421875,
+											"width": 95.03076171875,
 											"height": 13,
 											"text": "+productLine",
 											"horizontalAlignment": 0
@@ -3256,7 +3256,7 @@
 											"font": "Arial;13;0",
 											"left": 869,
 											"top": 185,
-											"width": 94.31982421875,
+											"width": 95.03076171875,
 											"height": 13,
 											"text": "+shippingLines[]",
 											"horizontalAlignment": 0
@@ -3273,7 +3273,7 @@
 											"font": "Arial;13;0",
 											"left": 869,
 											"top": 200,
-											"width": 94.31982421875,
+											"width": 95.03076171875,
 											"height": 13,
 											"text": "+totalPrice",
 											"horizontalAlignment": 0
@@ -3290,7 +3290,7 @@
 											"font": "Arial;13;0",
 											"left": 869,
 											"top": 215,
-											"width": 94.31982421875,
+											"width": 95.03076171875,
 											"height": 13,
 											"text": "+tax",
 											"horizontalAlignment": 0
@@ -3299,7 +3299,7 @@
 									"font": "Arial;13;0",
 									"left": 864,
 									"top": 105,
-									"width": 104.31982421875,
+									"width": 105.03076171875,
 									"height": 128
 								},
 								{
@@ -3314,7 +3314,7 @@
 									"font": "Arial;13;0",
 									"left": 864,
 									"top": 233,
-									"width": 104.31982421875,
+									"width": 105.03076171875,
 									"height": 10
 								},
 								{
@@ -3354,7 +3354,7 @@
 							"containerChangeable": true,
 							"left": 864,
 							"top": 80,
-							"width": 104.31982421875,
+							"width": 105.03076171875,
 							"height": 163,
 							"nameCompartment": {
 								"$ref": "AAAAAAGHPYUCrIkWp5c="
@@ -3526,23 +3526,6 @@
 										},
 										{
 											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGHPdiAisHqJPY=",
-											"_parent": {
-												"$ref": "AAAAAAGHPax8/tsAADs="
-											},
-											"model": {
-												"$ref": "AAAAAAGHPdiAacHbX2I="
-											},
-											"font": "Arial;13;0",
-											"left": 765,
-											"top": 379,
-											"width": 121.0498046875,
-											"height": 13,
-											"text": "+tax",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
 											"_id": "AAAAAAGHPd4mSA045fo=",
 											"_parent": {
 												"$ref": "AAAAAAGHPax8/tsAADs="
@@ -3552,7 +3535,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 765,
-											"top": 394,
+											"top": 379,
 											"width": 121.0498046875,
 											"height": 13,
 											"text": "+totalPrice",
@@ -3563,7 +3546,7 @@
 									"left": 760,
 									"top": 329,
 									"width": 131.0498046875,
-									"height": 83
+									"height": 68
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -3576,7 +3559,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 760,
-									"top": 412,
+									"top": 397,
 									"width": 131.0498046875,
 									"height": 10
 								},
@@ -8906,7 +8889,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGHPYUCqYkTaJg="
 							},
-							"name": "datePlacement"
+							"name": "placementDate"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -8914,7 +8897,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGHPYUCqYkTaJg="
 							},
-							"name": "dateDelivery"
+							"name": "deliveryDate"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -9254,15 +9237,6 @@
 								"$ref": "AAAAAAGHPax8/Nr4bQY="
 							},
 							"name": "qty",
-							"type": ""
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAGHPdiAacHbX2I=",
-							"_parent": {
-								"$ref": "AAAAAAGHPax8/Nr4bQY="
-							},
-							"name": "tax",
 							"type": ""
 						},
 						{
