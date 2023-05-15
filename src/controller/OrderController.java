@@ -60,8 +60,11 @@ public class OrderController extends Controller {
 	
 	public void createOrder(Customer customer, Date deliveryDate, Product product, int qty, PlaceOrderCommand placeOrderCommand) {
 		String orderID = orderCollection.getNextAvailableOrderID();
-		Order order = new Order(orderID, customer, deliveryDate, product, qty);
-
+		Date placementDate = getPlacementDate(deliveryDate);
+				
+		Order order = new Order(orderID, customer, placementDate, deliveryDate, product, qty);
+		orderCollection.add(order);
+		
 		// generate logistic quotes
 		// execute placeOrderCommand		
 	}

@@ -20,12 +20,17 @@ public class EndCustomer extends Customer {
 
 	@Override
 	public String getType() {
-		return "E";
+		return "Final";
 	}
 
 	@Override
 	public double getCoopBenefit() {
 		return 1.15;
+	}
+
+	@Override
+	public int getMaxQtyAllowed() {
+		return 100;
 	}
 
 }

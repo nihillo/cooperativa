@@ -19,12 +19,19 @@ public class StockistCustomer extends Customer {
 
 	@Override
 	public String getType() {
-		return "S";
+		return "Dist.";
 	}
 
 	@Override
 	public double getCoopBenefit() {
 		return 1.05;
+	}
+
+	@Override
+	public int getMaxQtyAllowed() {
+		// ilimitado a efectos prácticos,
+		// devolvemos el máximo permitido para int
+		return 2147483647;
 	}
 
 }

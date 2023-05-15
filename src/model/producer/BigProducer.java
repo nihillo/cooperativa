@@ -27,7 +27,7 @@ public class BigProducer extends Producer {
 	 */
 	@Override
 	protected String getType() {
-		return "B";
+		return "Gran P";
 	}
 
 }

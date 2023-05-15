@@ -51,7 +51,7 @@ public class CreateOrderCommand implements Command {
 		Date deliveryDate = promptDeliveryDate(prompt);
 		Date placementDate = orderController.getPlacementDate(deliveryDate);
 		Product product = promptProduct(prompt);
-		int qty = promptQty(prompt, product);
+		int qty = promptQty(prompt, product, customer);
 		boolean accept = promptAcceptOrder(prompt, product.getId(), qty, product.getPrice(placementDate)*qty*customer.getCoopBenefit());
 		
 		if (accept) {
@@ -65,8 +65,10 @@ public class CreateOrderCommand implements Command {
 	}
 
 	private boolean promptAcceptOrder(Scanner prompt, String productID, int qty, double cost) {
-		view.print("CANTIDAD    --    PRODUCTO    --    PRECIO");
+		view.print("CANTIDAD    --    PRODUCTO    --    PRECIO*");
 		view.print(Integer.toString(qty) + "    --    " + productID + "    --    " + cost);
+		view.print("");
+		view.print("*Este precio no incluye impuestos ni transporte");
 		view.print("");
 		
 		view.print("¿Desea continuar con el pedido? (S/N)");
@@ -79,7 +81,8 @@ public class CreateOrderCommand implements Command {
 			}
 		}
 		
-		return false;
+		boolean accept = acceptStr.equals("S") ? true : false;
+		return accept;
 	}
 
 	private Date promptDeliveryDate(Scanner prompt) {
@@ -128,7 +131,7 @@ public class CreateOrderCommand implements Command {
 		return product;
 	}
 	
-	private int promptQty(Scanner prompt, Product product) {
+	private int promptQty(Scanner prompt, Product product, Customer customer) {
 		int qty = 0;
 		boolean productAvailable = false;
 		while (qty == 0 || !productAvailable) {
@@ -140,11 +143,13 @@ public class CreateOrderCommand implements Command {
 				view.print("Entrada incorrecta. Introduzca un número entero.");
 			}
 			
-			int productStock = product.getStock(); 
+			int productStock = product.getStock();
+			int maxAllowedQtyForCustomer = customer.getMaxQtyAllowed();
 			if (productStock < qty) {
 				view.print("Cantidad de producto no disponible. Introduzca un máximo de " + productStock + " kg.");
+			} else if (maxAllowedQtyForCustomer < qty) {
+				view.print("La máxima cantidad permitida para este tipo de cliente es de " + maxAllowedQtyForCustomer + " kg.");
 			} else {
-			// TODO validación cantidad máx que puede comprar cliente dependiendo de tipo
 				productAvailable = true;
 			}
 		}

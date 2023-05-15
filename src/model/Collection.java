@@ -75,8 +75,10 @@ public class Collection<E> {
 		return allElements;
 	}
 
-	public Order getLast() {
-		return (Order) collection.entrySet().toArray()[collection.size() -1];
+	public E getLast() {
+		String lastKey = collection.keySet().toArray()[collection.size() - 1].toString();
+		E lastItem = collection.get(lastKey);
+		return lastItem; 
 	}
 
 	public int size() {

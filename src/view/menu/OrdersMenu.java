@@ -22,6 +22,7 @@ public class OrdersMenu extends Menu {
 		
 		this.title = "===== PEDIDOS =====";
 		
+		// TODO pintar lista general de pedidos
 //		updateDisplayItems();
 		
 		this.executableItems.put("1", new MenuExecutableItem("Crear pedido", 

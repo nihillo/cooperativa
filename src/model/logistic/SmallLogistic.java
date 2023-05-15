@@ -20,7 +20,7 @@ public class SmallLogistic extends Logistic {
 
 	@Override
 	protected String getType() {
-		return "S";
+		return "Peq. L";
 	}
 
 }

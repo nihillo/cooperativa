@@ -20,6 +20,6 @@ public class BigLogistic extends Logistic {
 
 	@Override
 	protected String getType() {
-		return "B";
+		return "Gran L";
 	}
 }

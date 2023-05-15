@@ -27,6 +27,6 @@ public class SmallProducer extends Producer {
 	 */
 	@Override
 	protected String getType() {
-		return "S";
+		return "Peq. P";
 	}
 }

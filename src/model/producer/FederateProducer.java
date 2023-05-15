@@ -27,6 +27,6 @@ public class FederateProducer extends Producer {
 	 */
 	@Override
 	protected String getType() {
-		return "F";
+		return "Fed";
 	}
 }
