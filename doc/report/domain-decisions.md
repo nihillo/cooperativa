@@ -6,6 +6,7 @@ Es decir, por ejemplo, para el umbral de pequeños a grandes productores se ha e
 - Los distintos productos que gestiona la cooperativa son predefinidos. No se puede registrar un productor que trabaja un producto distinto a los registrados.
 - La evolución de precios se maneja en cada producto, mediante de una lista de precios indexada por semana.
 - Se interpreta la limitación de 5 cultivos a pequeños productores como un umbral más a partir del que serán considerados grandes productores. Un productor es considerado gran productor si pasa uno de los dos umbrales, el de superfice o el de número de cultivos (no necesariamente ambos a la vez).
+- Se interpreta que un cultivo produce una cantidad de producto anual igual a su extensión multiplicada por el rendimiento por Ha. del producto. El stock inicial de un producto se establece como la suma de las producciones de todos los cultivos de este producto.
 
 ### Logística
 - Se entiende como logística lo que comúnmente llamamos transportista, es decir, aquella empresa que se dedica al transporte de mercancías. En el sistema los hay de dos tipos, los que hacen envíos a larga distancia (gran logística), y los que lo hacen a pequeña distancia (pequeña logística). 

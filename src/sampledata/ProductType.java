@@ -7,18 +7,18 @@ package sampledata;
  * y sus atributos
  */
 public enum ProductType {
-	ALMENDRA(false, 2.1),
-	ACEITE(false, 1.8),
-	TRIGO(false, 2.9),
-	UVA(true, 12),
-	TOMATE(true, 44),
-	PIMIENTO(true, 22.3);
+	ALMENDRA(false, 2100),
+	ACEITE(false, 1800),
+	TRIGO(false, 2900),
+	UVA(true, 12000),
+	TOMATE(true, 44000),
+	PIMIENTO(true, 22300);
 	
 	private boolean perishable;
-	private double performance;
+	private int performance;
 	
 	
-	ProductType(boolean perishable, double performance) {
+	ProductType(boolean perishable, int performance) {
 		this.perishable = perishable;
 		this.performance = performance;
 	}
@@ -29,7 +29,7 @@ public enum ProductType {
 	}
 
 
-	public double getPerformance() {
+	public int getPerformance() {
 		return this.performance;
 	}
 }
