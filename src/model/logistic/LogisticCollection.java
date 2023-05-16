@@ -1,8 +1,10 @@
 package model.logistic;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import model.Collection;
+import model.order.ShipmentType;
 
 
 /**
@@ -67,5 +69,21 @@ public class LogisticCollection {
 	 */
 	public ArrayList<Logistic> getAll() {
 		return collection.getAll();
+	}
+
+	public ArrayList<Logistic> getAllByType(ShipmentType type) {
+		ArrayList<Logistic> allLogistics = collection.getAll();
+		ArrayList<Logistic> filteredLogistics = new ArrayList<Logistic>();
+		
+		Iterator<Logistic> iterator =  allLogistics.iterator();
+		
+		while (iterator.hasNext()) {
+			Logistic logistic = iterator.next();
+			if (logistic.getType() == type) {
+				filteredLogistics.add(logistic);
+			}
+		}
+		
+		return filteredLogistics;
 	}
 }

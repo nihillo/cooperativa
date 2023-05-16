@@ -6,6 +6,10 @@ import model.logistic.BigLogistic;
 import model.logistic.Logistic;
 import model.logistic.LogisticCollection;
 import model.logistic.SmallLogistic;
+import model.order.Order;
+import model.order.Shipment;
+import model.order.ShipmentType;
+import model.order.ShippingLine;
 import sampledata.SampleLogistic;
 
 /**
@@ -68,6 +72,32 @@ public class LogisticController extends Controller {
 		for (SampleLogistic sampleLogistic : SampleLogistic.values()) {
 			registerLogistic(sampleLogistic.getID(), sampleLogistic.getName(), sampleLogistic.getType());
 		}
+	}
+
+	public void generateShipmentQuotes(Order order) {
+		
+		for(ShippingLine shippingLine : order.getShippingLines()) {
+			if (shippingLine != null) {
+				ShipmentType shipmentType = shippingLine.getShipmentType();
+				ArrayList<Logistic> logistics = logisticCollection.getAllByType(shipmentType);
+				
+				for (Logistic logistic : logistics) {
+					Shipment shipmentQuote = logistic.getShipmentQuote(order);	
+					shippingLine.addShipmentQuote(shipmentQuote);
+				}
+			}
+		}
+	}
+
+	public boolean setShipment(String orderID, ShippingLine shippingLine, String selectionID) {
+		Shipment shipment = shippingLine.getShipmentQuote(selectionID);
+		
+		if (shipment != null) {
+			shippingLine.setShipment(shipment);
+			return true;
+		}
+		
+		return false;
 	}
 
 }

@@ -1,8 +1,14 @@
 package model.product;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 import model.CollectionItem;
+import model.order.Order;
 import sampledata.ProductType;
 
 /**
@@ -19,6 +25,7 @@ public class Product implements CollectionItem {
 	HashMap<String, Double> refPrices;
 	int stock;
 	HashMap<String, CropShareItem> cropShare;
+	ArrayList<Order> orderHistory;
 		
 	/**
 	 * Constructor
@@ -32,6 +39,7 @@ public class Product implements CollectionItem {
 		this.refPrices = refPrices;
 		this.stock = 0;
 		this.cropShare = new HashMap<String, CropShareItem>();
+		this.orderHistory = new ArrayList<Order>();
 	}
 
 	/**
@@ -103,5 +111,38 @@ public class Product implements CollectionItem {
 			double coefficient = (double) cropProduction / totalProduction;
 			this.cropShare.get(cropID).setShareCoefficient(coefficient);
 		}
+	}
+
+	public double getPrice(Date placementDate) {
+		
+		String week = "1";
+		boolean isBeforeFirstWeek;
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			Date firstDayOfFirstWeek = dateFormat.parse("02/01/2023");
+			isBeforeFirstWeek = placementDate.before(firstDayOfFirstWeek);
+		} catch (Exception e) {
+			isBeforeFirstWeek = false;
+		}
+		
+		if (!isBeforeFirstWeek) {
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(placementDate);
+			week = String.format("%02d", calendar.get(Calendar.WEEK_OF_YEAR));			
+		}
+		
+		String weekKey = "W" + week;
+		double price = this.refPrices.get(weekKey);
+		
+		return price;
+		
+	}
+
+	public void addOrderToHistory(Order order) {
+		orderHistory.add(order);	
+	}
+
+	public void discountStock(int qty) {
+		stock -= qty;		
 	}
 }

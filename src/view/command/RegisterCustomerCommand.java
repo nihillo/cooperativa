@@ -7,7 +7,7 @@ import view.ConsoleView;
 
 /**
  * Clase RegisterCustomerCommand - comando registrar cliente
- * @author nihillo
+ * @author Juan Barranco
  *
  */
 public class RegisterCustomerCommand implements Command {
@@ -61,6 +61,7 @@ public class RegisterCustomerCommand implements Command {
 		
 		view.print("Introduzca código postal:");
 		String zipCode = prompt.nextLine();
+		// TODO validación CP pertenece a territorio permitido
 		
 		customerController.registerCustomer(id, name, type, address, cityProvince, zipCode);
 		view.refreshMenu("CUSTOMERS");

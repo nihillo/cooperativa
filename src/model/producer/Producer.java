@@ -14,9 +14,14 @@ import model.product.Crop;
  * @version 0.1
  */
 public abstract class Producer implements CollectionItem {
+	
+	protected enum ProducerType { BIG_PRODUCER, SMALL_PRODUCER, FEDERATE_PRODUCER }
+	
 	protected String id;
 	protected String name;
 	protected ArrayList<Crop> crops;
+	protected ProducerType type;
+	protected String typeLabel;
 	
 	/**
 	 * Constructor de la clase Producer
@@ -48,7 +53,7 @@ public abstract class Producer implements CollectionItem {
 			}
 		}
 		
-		String infoLine = this.id + "   --  " + this.getType() + "  --   " + this.name + "   --   " + cropsStr;
+		String infoLine = this.id + "   --  " + this.getTypeLabel() + "  --   " + this.name + "   --   " + cropsStr;
 		return infoLine;
 	}
 
@@ -58,5 +63,11 @@ public abstract class Producer implements CollectionItem {
 	 * F: productor federado
 	 * @return
 	 */
-	protected abstract String getType();
+	public String getTypeLabel() {
+		return this.typeLabel;
+	}
+	
+	public String getType() {
+		return this.typeLabel;
+	}
 }

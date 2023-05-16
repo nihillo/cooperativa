@@ -2,6 +2,7 @@ package model.producer;
 
 import java.util.ArrayList;
 
+import model.producer.Producer.ProducerType;
 import model.product.Crop;
 
 /**
@@ -20,13 +21,7 @@ public class SmallProducer extends Producer {
 	 */
 	public SmallProducer(String id, String name, ArrayList<Crop> crops) {
 		super(id, name, crops);
-	}
-	
-	/**
-	 * Devuelve el flag de tipo de productor
-	 */
-	@Override
-	protected String getType() {
-		return "S";
+		this.type = ProducerType.SMALL_PRODUCER;
+		this.typeLabel = "Peq. P";
 	}
 }

@@ -31,6 +31,14 @@ public class Crop {
 	}
 	
 	/**
+	 * Devuelve el id del productor
+	 * @return
+	 */
+	public String getProducerID() {
+		return producerID;
+	}
+
+	/**
 	 * Devuelve el id del cultivo
 	 * @return String id
 	 */
