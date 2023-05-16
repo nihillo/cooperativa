@@ -18,4 +18,31 @@ public class ProductLine {
 		this.totalPrice = totalPrice;
 	}
 
+	public boolean isPerishable() {
+		return product.isPerishable();
+	}
+	
+	public int getQty() {
+		return this.qty;
+	}
+	
+	public double getUnitPrice() {
+		return this.unitPrice;
+	}
+	
+	public double getBasePrice() {
+		return this.basePrice;
+	}
+	
+	public double getTotalPrice() {
+		return this.totalPrice;
+	}
+
+	public String getProductID() {
+		return product.getId();
+	}
+
+	public Product getProduct() {
+		return product;
+	}
 }

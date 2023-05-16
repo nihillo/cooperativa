@@ -26,6 +26,7 @@ Es decir, por ejemplo, para el umbral de diferenciación entre pequeños y grand
         - El precio final es la suma de ambos componentes, multiplicado cada uno de ellos por los kg de mercancía y/o km de distancia, según corresponda.
     - Para los precios por km se establecerá una única tarifa para perecederos y una única para no perecederos, a aplicar tanto en pequeña como gran logística por todos los transportistas como precio base.
     - Cada transportista al generar una oferta, y para que haya variedad entre ellas y competencia, puede aplicar incrementos o descuentos sobre este cálculo base. En nuestra simulación generaremos estas variaciones de forma aleatoria, dentro de unos márgenes acotados entre el -15% y el +15% sobre el precio base.
+    - Nota: aplicando de forma directa estos algoritmos se daban situaciones muy dispares, como precios muy elevados en gran logística (del orden de 10 veces el precio del producto) y muy bajos en pequeña (del orden de la centésima parte), de modo que se han ajustado una serie de coeficientes adicionales hasta que se observaron empíricamente resultados más razonables. 
 
 
 ### Cliente

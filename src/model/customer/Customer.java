@@ -1,6 +1,9 @@
 package model.customer;
 
+import java.util.ArrayList;
+
 import model.CollectionItem;
+import model.order.Order;
 
 /**
  * Clase Customer (Cliente)
@@ -16,6 +19,8 @@ public abstract class Customer implements CollectionItem {
 	private Address address;
 	protected CustomerType type;
 	protected String typeLabel;
+	protected double taxRate;
+	private ArrayList<Order> orderHistory;
 	
 	/**
 	 * Constructor
@@ -27,6 +32,7 @@ public abstract class Customer implements CollectionItem {
 		this.id = id;
 		this.name = name;
 		this.address = addressObj;
+		this.orderHistory = new ArrayList<Order>();
 	}
 
 	@Override
@@ -57,5 +63,13 @@ public abstract class Customer implements CollectionItem {
 
 	public Address getAddress() {
 		return this.address;
+	}
+
+	public double getTaxRate() {
+		return this.taxRate;
+	}
+
+	public void addOrderToHistory(Order order) {
+		orderHistory.add(order);		
 	}
 }

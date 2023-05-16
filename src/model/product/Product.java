@@ -2,11 +2,13 @@ package model.product;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
 import model.CollectionItem;
+import model.order.Order;
 import sampledata.ProductType;
 
 /**
@@ -23,6 +25,7 @@ public class Product implements CollectionItem {
 	HashMap<String, Double> refPrices;
 	int stock;
 	HashMap<String, CropShareItem> cropShare;
+	ArrayList<Order> orderHistory;
 		
 	/**
 	 * Constructor
@@ -36,6 +39,7 @@ public class Product implements CollectionItem {
 		this.refPrices = refPrices;
 		this.stock = 0;
 		this.cropShare = new HashMap<String, CropShareItem>();
+		this.orderHistory = new ArrayList<Order>();
 	}
 
 	/**
@@ -124,7 +128,7 @@ public class Product implements CollectionItem {
 		if (!isBeforeFirstWeek) {
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(placementDate);
-			week = Integer.toString(calendar.get(Calendar.WEEK_OF_YEAR));
+			week = String.format("%02d", calendar.get(Calendar.WEEK_OF_YEAR));			
 		}
 		
 		String weekKey = "W" + week;
@@ -132,5 +136,13 @@ public class Product implements CollectionItem {
 		
 		return price;
 		
+	}
+
+	public void addOrderToHistory(Order order) {
+		orderHistory.add(order);	
+	}
+
+	public void discountStock(int qty) {
+		stock -= qty;		
 	}
 }

@@ -9,6 +9,8 @@ import java.util.GregorianCalendar;
 import model.customer.Customer;
 import model.order.Order;
 import model.order.OrderCollection;
+import model.order.Shipment;
+import model.order.ShippingLine;
 import model.product.Product;
 import sampledata.SystemData;
 
@@ -62,12 +64,32 @@ public class OrderController extends Controller {
 		Date placementDate = getPlacementDate(deliveryDate);
 				
 		Order order = new Order(orderID, customer, placementDate, deliveryDate, product, qty);
-		orderCollection.add(order);
 		return order;
 	}
 	
-	public void placeOrder() {
-		// addshippinglines
-		// place order
+	public void calculateAmounts(Order order) {
+		order.calculateAmounts();	
+	}
+	
+	public void placeOrder(Order order) {
+		Product product = order.getProductLine().getProduct();
+		product.discountStock(order.getProductLine().getQty());		
+		product.addOrderToHistory(order);
+		
+		Customer customer = order.getCustomer();
+		customer.addOrderToHistory(order);
+		
+		for (ShippingLine shippingLine : order.getShippingLines()) {
+			if (shippingLine != null) {
+				Shipment shipment = shippingLine.getShipment();
+				shipment.getLogistic().addOrderShipment(order.getId(), shipment);
+			}
+		}
+		
+		orderCollection.add(order);
+		
+		order.setStatus(Order.Status.CONFIRMED);
+		
+		int test = 1;
 	}	
 }

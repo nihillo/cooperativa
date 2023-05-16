@@ -20,6 +20,7 @@ public class EndCustomer extends Customer {
 		super(id, name, addressObj);
 		this.type = CustomerType.ENDCUSTOMER;
 		this.typeLabel = "Final";
+		this.taxRate = 10;
 	}
 
 	@Override

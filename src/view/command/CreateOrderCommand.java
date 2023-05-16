@@ -1,5 +1,6 @@
 package view.command;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -9,6 +10,9 @@ import controller.OrderController;
 import controller.ProductController;
 import model.customer.Customer;
 import model.order.Order;
+import model.order.ProductLine;
+import model.order.Shipment;
+import model.order.ShippingLine;
 import model.product.Product;
 import view.ConsoleView;
 
@@ -57,29 +61,80 @@ public class CreateOrderCommand implements Command {
 		Date placementDate = orderController.getPlacementDate(deliveryDate);
 		Product product = promptProduct(prompt);
 		int qty = promptQty(prompt, product, customer);
-		boolean accept = promptAcceptOrder(prompt, product.getId(), qty, product.getPrice(placementDate)*qty*customer.getCoopBenefit());
-		
-		// no continuar a la creación del pedido si el usuario no lo acepta
-		if (!accept) return;
 	
 		Order order = orderController.createOrder(customer, deliveryDate, product, qty);
-		
-		// generar ofertas de logística
+				
 		logisticController.generateShipmentQuotes(order);
+		promptShipmentSelection(prompt, order);
 		
-		// prompt logistic quote
-		// place order
-						
+		orderController.calculateAmounts(order);
+		
+		boolean accept = promptAcceptOrder(prompt, order);
+		if (!accept) return;
+		
+		orderController.placeOrder(order);
 	}
 
-	private boolean promptAcceptOrder(Scanner prompt, String productID, int qty, double cost) {
-		view.print("CANTIDAD    --    PRODUCTO    --    PRECIO*");
+	private void promptShipmentSelection(Scanner prompt, Order order) {
+		ShippingLine[] shippingLines = order.getShippingLines();
+		for (ShippingLine shippingLine : shippingLines) {			
+			if (shippingLine != null) {
+				view.print("Ofertas para " + shippingLine.getShipmentTypeLabel() + ": ");
+				view.print("Distancia: " + shippingLine.getDistance());
+				view.print("ID    --   EMPRESA    --    PRECIO");
+				
+				for (Shipment quote: shippingLine.getShipmentQuotes()) {
+					view.print(quote.getInfoLine());
+				}
+				view.print("");
+				
+				boolean isShipmentSet = false;
+				while (!isShipmentSet) {
+					view.print("Seleccione una opción (introduzca ID de empresa seleccionada):");
+					String selectionID = prompt.nextLine();
+					isShipmentSet = logisticController.setShipment(order.getId(), shippingLine, selectionID);
+					
+					if (!isShipmentSet) {
+						view.print("Opción no válida");
+					}
+				}
+			}
+		}
+	}
+
+	private boolean promptAcceptOrder(Scanner prompt, Order order) {
+		ProductLine productLine = order.getProductLine();
+		int qty = productLine.getQty();
+		String productID = productLine.getProductID();
+		double cost = productLine.getTotalPrice();
+		
+		view.print("== RESUMEN DEL PEDIDO ==");
+		view.print("PRODUCTO:");
+		view.print("CANTIDAD    --    PRODUCTO    --    PRECIO");
 		view.print(Integer.toString(qty) + "    --    " + productID + "    --    " + cost);
 		view.print("");
-		view.print("*Este precio no incluye impuestos ni transporte");
+		view.print("ENVÍO:");
+		view.print("#   --  ID-EMPRESA    --    PRECIO");
+		int i=1;
+		for (ShippingLine shippingLine : order.getShippingLines()) {			
+			if (shippingLine != null) {
+				view.print(Integer.toString(i) + "  --  " + shippingLine.getShipment().getSummaryInfoLine());
+				i++;
+			}
+		}
+		view.print("");
+		view.print("-----------");
+		if (order.getTaxRate() > 0) {
+			view.print("BASE: " + order.getBasePrice());
+			view.print("IVA " + order.getTaxRate() + ("%: " + order.getTax()));
+		} 
+		view.print("TOTAL: " + order.getTotalPrice());
+		view.print("");
+		view.print("-----------");
 		view.print("");
 		
-		view.print("¿Desea continuar con el pedido? (S/N)");
+		
+		view.print("¿Desea confirmar el pedido? (S/N)");
 		String acceptStr = null;
 		while(acceptStr == null || !(acceptStr.equals("S") || acceptStr.equals("N"))) {
 			acceptStr = prompt.nextLine().toUpperCase();

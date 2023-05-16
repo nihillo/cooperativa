@@ -17,6 +17,7 @@ public class StockistCustomer extends Customer {
 		super(id, name, addressObj);
 		this.type = CustomerType.STOCKIST;
 		this.typeLabel = "Dist.";
+		this.taxRate = 0;
 	}
 
 	@Override
