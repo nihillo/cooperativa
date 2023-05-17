@@ -1,5 +1,7 @@
 package view.command;
 
+import java.util.Scanner;
+
 import view.ConsoleView;
 
 /**
@@ -14,6 +16,7 @@ public class SetMenuCommand implements Command {
 	
 	ConsoleView view;
 	String menuID;
+	String redirectMsg;
 	
 	/**
 	 * Constructor
@@ -23,6 +26,18 @@ public class SetMenuCommand implements Command {
 	public SetMenuCommand(ConsoleView view, String menuID) {
 		this.view = view;
 		this.menuID = menuID;
+		this.redirectMsg = null;
+	}
+	
+	/**
+	 * Constructor con mensaje de redirección
+	 * @param view
+	 * @param menuID
+	 */
+	public SetMenuCommand(ConsoleView view, String menuID, String redirectMsg) {
+		this.view = view;
+		this.menuID = menuID;
+		this.redirectMsg = redirectMsg;
 	}
 	
 	/**
@@ -30,6 +45,13 @@ public class SetMenuCommand implements Command {
 	 */
 	@Override
 	public void execute() {
+		if (redirectMsg != null) {
+			Scanner prompt = view.getPrompt();
+			view.print(redirectMsg);
+			view.print("Pulse INTRO para continuar:");
+			String key = prompt.nextLine();
+		}
+		
 		view.setCurrentMenu(menuID);
 	}
 }

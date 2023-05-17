@@ -72,4 +72,14 @@ public class Collection<E> {
 		ArrayList<E> allElements = new ArrayList<>(collection.values());
 		return allElements;
 	}
+
+	public E getLast() {
+		String lastKey = collection.keySet().toArray()[collection.size() - 1].toString();
+		E lastItem = collection.get(lastKey);
+		return lastItem; 
+	}
+
+	public int size() {
+		return collection.size();
+	}
 }

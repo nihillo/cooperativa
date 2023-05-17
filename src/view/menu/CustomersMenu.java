@@ -3,8 +3,12 @@ package view.menu;
 import java.util.ArrayList;
 
 import controller.CustomerController;
+import controller.LogisticController;
+import controller.OrderController;
+import controller.ProductController;
 import model.customer.Customer;
 import view.ConsoleView;
+import view.command.CreateOrderCommand;
 import view.command.RegisterCustomerCommand;
 import view.command.SetMenuCommand;
 
@@ -17,6 +21,9 @@ public class CustomersMenu extends Menu {
 	
 	ConsoleView view;
 	CustomerController customerController;
+	OrderController orderController;
+	ProductController productController;
+	LogisticController logisticController;
 	
 	/**
 	 * Constructor
@@ -25,17 +32,32 @@ public class CustomersMenu extends Menu {
 	 */
 	public CustomersMenu(
 		ConsoleView view, 
-		CustomerController customerController
+		CustomerController customerController,
+		OrderController orderController,
+		ProductController productController,
+		LogisticController logisticController
 	) {
 		super();
 		this.view = view;
 		this.customerController = customerController;
+		this.orderController = orderController;
+		this.productController = productController;
+		this.logisticController = logisticController;
 		
 		this.title = "===== CLIENTES =====";
 		
 		updateDisplayItems();
 		
 		this.executableItems.put("1", new MenuExecutableItem("Registrar cliente", new RegisterCustomerCommand(view, this.customerController)));
+		this.executableItems.put("2", new MenuExecutableItem(
+				"Crear pedido para cliente", 
+				new CreateOrderCommand(
+						view, 
+						this.orderController, 
+						this.customerController, 
+						this.productController,
+						this.logisticController
+		)));
 		this.executableItems.put("q", new MenuExecutableItem("Atrás", new SetMenuCommand(view, "MAIN")));
 	}
 

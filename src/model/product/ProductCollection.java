@@ -74,4 +74,8 @@ public class ProductCollection {
 		String[] ids = collection.getIDs();
 		return ids;
 	}
+
+	public Product get(String id) {
+		return collection.get(id);
+	}
 }
