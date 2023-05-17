@@ -1,5 +1,6 @@
 package model.product;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import model.Collection;
@@ -77,5 +78,9 @@ public class ProductCollection {
 
 	public Product get(String id) {
 		return collection.get(id);
+	}
+
+	public ArrayList<Product> getAll() {
+		return collection.getAll();
 	}
 }

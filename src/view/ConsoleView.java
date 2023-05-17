@@ -8,6 +8,7 @@ import controller.LogisticController;
 import controller.OrderController;
 import controller.ProducerController;
 import controller.ProductController;
+import controller.ReportController;
 import view.menu.CustomersMenu;
 import view.menu.LogisticsMenu;
 import view.menu.MainMenu;
@@ -15,6 +16,7 @@ import view.menu.Menu;
 import view.menu.MenuExecutableItem;
 import view.menu.OrdersMenu;
 import view.menu.ProducersMenu;
+import view.menu.ReportsMenu;
 
 
 /**
@@ -46,6 +48,7 @@ public class ConsoleView
     	controllers.put("LOGISTIC", new LogisticController());
     	controllers.put("CUSTOMER", new CustomerController());
     	controllers.put("ORDER", new OrderController());
+    	controllers.put("REPORT", new ReportController());
     	
     	menus = new HashMap<String, Menu>();
     	menus.put("MAIN", new MainMenu(this));
@@ -60,6 +63,7 @@ public class ConsoleView
     					(LogisticController) controllers.get("LOGISTIC")
     	));
     	menus.put("ORDERS",  new OrdersMenu(this, (OrderController) controllers.get("ORDER")));
+    	menus.put("REPORTS", new ReportsMenu(this, (ReportController) controllers.get("REPORT")));
     	
     	setCurrentMenu("MAIN");
     }

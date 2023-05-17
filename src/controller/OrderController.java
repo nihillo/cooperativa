@@ -89,7 +89,5 @@ public class OrderController extends Controller {
 		orderCollection.add(order);
 		
 		order.setStatus(Order.Status.CONFIRMED);
-		
-		int test = 1;
 	}	
 }
