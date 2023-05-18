@@ -12,6 +12,7 @@ import model.order.OrderCollection;
 import model.order.Shipment;
 import model.order.ShippingLine;
 import model.product.Product;
+import sampledata.SampleOrder;
 import sampledata.SystemData;
 
 /**
@@ -89,5 +90,11 @@ public class OrderController extends Controller {
 		orderCollection.add(order);
 		
 		order.setStatus(Order.Status.CONFIRMED);
+		
+		int test = 1;
+	}
+
+	public void loadSampleOrders(LogisticController logisticController) {
+		SampleOrder.createSampleOrders(this, logisticController);		
 	}	
 }
