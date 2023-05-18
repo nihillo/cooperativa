@@ -2,6 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.logistic.Logistic;
+import model.logistic.LogisticCollection;
 import model.order.Order;
 import model.order.ProductLine;
 import model.producer.Producer;
@@ -21,7 +23,7 @@ public class ReportController extends Controller {
 		
 		ArrayList<Integer> widths = new ArrayList<Integer>();
 		widths.add(15);
-		widths.add(17);
+		widths.add(20);
 		widths.add(20);
 		
 		ProductCollection productCollection = ProductCollection.getInstance();
@@ -56,7 +58,7 @@ public class ReportController extends Controller {
 	}
 	
 	public String getProducerReportTitle(Producer producer) {
-		String producerStr = producer.getId() + " - " + producer.getName() + "(" + producer.getType() + ")";
+		String producerStr = producer.getId() + " - " + producer.getName() + " (" + producer.getType() + ")";
 		return "Productor: " + producerStr;
 	}
 
@@ -68,7 +70,7 @@ public class ReportController extends Controller {
 		
 		ArrayList<Integer> widths = new ArrayList<Integer>();
 		widths.add(15);
-		widths.add(17);
+		widths.add(20);
 		widths.add(20);
 		
 		ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
@@ -88,6 +90,44 @@ public class ReportController extends Controller {
 			lines.add(line);
 		});
 
+		Table report = new Table(header, lines, widths);
+		
+		return report;
+	}
+
+	public Table getBenefitsByLogistic() {
+		ArrayList<String> header = new ArrayList<String>();
+		header.add("LOGÍSTICA");
+		header.add("TIPO");
+		header.add("Nº PORTES");
+		header.add("BENEFICIO TOTAL €");
+		
+		ArrayList<Integer> widths = new ArrayList<Integer>();
+		widths.add(15);
+		widths.add(15);
+		widths.add(15);
+		widths.add(20);
+		
+		ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
+		LogisticCollection logisticCollection = LogisticCollection.getInstance();
+		ArrayList<Logistic> logistics = logisticCollection.getAll();
+		
+		logistics.forEach(logistic -> {
+			String id = logistic.getId();
+			String name = logistic.getName();
+			String type = logistic.getTypeLabel();
+			int shipmentsNo = logistic.getOrderShipmentHistory().size();
+			double benefit = logistic.getBenefit();
+			
+			ArrayList<String> line = new ArrayList<String>();
+			line.add(id + " - " + name);
+			line.add(type);
+			line.add(Integer.toString(shipmentsNo));
+			line.add(Double.toString(benefit));
+			
+			lines.add(line);
+		});
+		
 		Table report = new Table(header, lines, widths);
 		
 		return report;

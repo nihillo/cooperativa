@@ -2,6 +2,7 @@ package view.command;
 
 import controller.ReportController;
 import view.ConsoleView;
+import view.ReportTable;
 
 public class LogisticReportCommand extends ReportCommand implements Command {
 
@@ -11,8 +12,11 @@ public class LogisticReportCommand extends ReportCommand implements Command {
 
 	@Override
 	protected void retrieveReport() {
-		// TODO Auto-generated method stub
+		// limpiar posibles ejecuciones previas
+		this.reportTables.clear();
 		
+		ReportTable reportTable = new ReportTable("Beneficios por logística", reportController.getBenefitsByLogistic());
+		this.reportTables.add(reportTable);
 	}
 
 }

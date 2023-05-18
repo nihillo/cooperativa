@@ -102,4 +102,17 @@ public abstract class Logistic implements CollectionItem {
 		OrderShipment orderShipment = new OrderShipment(orderID, shipment);
 		orderShipmentHistory.add(orderShipment);
 	}
+
+	public ArrayList<OrderShipment> getOrderShipmentHistory() {
+		return orderShipmentHistory;
+	}
+
+	public double getBenefit() {
+		double benefit = 0;
+		for (OrderShipment orderShipment : orderShipmentHistory) {
+			benefit += orderShipment.getShipment().getPrice();
+		}
+		
+		return benefit;
+	}
 }

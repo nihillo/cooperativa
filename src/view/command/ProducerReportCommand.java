@@ -22,6 +22,8 @@ public class ProducerReportCommand extends ReportCommand implements Command {
 		ProducerCollection producerCollection = ProducerCollection.getInstance();
 		ArrayList<Producer> producers = producerCollection.getAll();
 		
+		view.print("Beneficios por productor");
+		view.print("");
 		for (Producer producer : producers) {			
 			ReportTable reportTable = new ReportTable(reportController.getProducerReportTitle(producer), reportController.getProducerBenefit(producer));
 			this.reportTables.add(reportTable);
