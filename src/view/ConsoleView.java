@@ -160,5 +160,9 @@ public class ConsoleView
 		CustomerController customerController = (CustomerController) controllers.get("CUSTOMER");
 		customerController.loadSampleCustomers();
 		this.refreshMenu("CUSTOMERS");
+		
+		OrderController orderController = (OrderController) controllers.get("ORDER");
+		orderController.loadSampleOrders(logisticController);
+		this.refreshMenu("ORDERS");
 	}
 }
