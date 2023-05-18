@@ -145,4 +145,8 @@ public class Product implements CollectionItem {
 	public void discountStock(int qty) {
 		stock -= qty;		
 	}
+
+	public ArrayList<Order> getOrderHistory() {
+		return this.orderHistory;
+	}
 }
