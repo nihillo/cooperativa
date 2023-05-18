@@ -132,4 +132,46 @@ public class ReportController extends Controller {
 		
 		return report;
 	}
+
+	public Table getCoopBenefit() {
+		ArrayList<String> header = new ArrayList<String>();
+		header.add("PRODUCTO");
+		header.add("CANTIDAD TOTAL KG");
+		header.add("BENEFICIOS €");
+		
+		ArrayList<Integer> widths = new ArrayList<Integer>();
+		widths.add(15);
+		widths.add(20);
+		widths.add(20);
+		
+		ProductCollection productCollection = ProductCollection.getInstance();
+		
+		ArrayList<Product> products = productCollection.getAll();
+		ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
+		
+		products.forEach(product -> {
+			String id = product.getId();
+			int productQty = 0;
+			double productBenefit = 0;
+			
+			ArrayList<Order> productOrderHistory = product.getOrderHistory();
+			
+			for (Order order : productOrderHistory) {
+				ProductLine productLine = order.getProductLine();
+				productQty += productLine.getQty();
+				productBenefit += productLine.getTotalPrice() - productLine.getBasePrice();
+			}
+			
+			ArrayList<String> line = new ArrayList<String>();
+			line.add(id);
+			line.add(Integer.toString(productQty));
+			line.add(Double.toString(productBenefit));
+			
+			lines.add(line);
+		});
+		
+		Table report = new Table(header, lines, widths);
+		
+		return report;
+	}
 }
