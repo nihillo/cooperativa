@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import model.CollectionItem;
 import model.product.Crop;
+import view.Table;
 
 /**
  * Clase Producer (Productor)
@@ -69,5 +70,13 @@ public abstract class Producer implements CollectionItem {
 	
 	public String getType() {
 		return this.typeLabel;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public ArrayList<Crop> getCrops() {
+		return this.crops;
 	}
 }

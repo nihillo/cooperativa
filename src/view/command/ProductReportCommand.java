@@ -1,9 +1,7 @@
-package view.menu;
+package view.command;
 
 import controller.ReportController;
 import view.ConsoleView;
-import view.command.Command;
-import view.command.ReportCommand;
 
 public class ProductReportCommand extends ReportCommand implements Command {
 
