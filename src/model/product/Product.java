@@ -147,6 +147,6 @@ public class Product implements CollectionItem {
 	}
 
 	public ArrayList<Order> getOrderHistory() {
-		return this.getOrderHistory();
+		return this.orderHistory;
 	}
 }

@@ -30,6 +30,7 @@ public class ReportController extends Controller {
 			}
 			
 			String line = id + "    --    " + productQty + "    --    " + productSale;
+			report.add(line);
 		});
 		
 		return report;
