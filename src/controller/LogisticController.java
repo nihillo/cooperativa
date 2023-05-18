@@ -89,7 +89,7 @@ public class LogisticController extends Controller {
 		}
 	}
 
-	public boolean setShipment(String orderID, ShippingLine shippingLine, String selectionID) {
+	public boolean setShipment(ShippingLine shippingLine, String selectionID) {
 		Shipment shipment = shippingLine.getShipmentQuote(selectionID);
 		
 		if (shipment != null) {

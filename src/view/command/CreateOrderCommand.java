@@ -92,7 +92,7 @@ public class CreateOrderCommand implements Command {
 				while (!isShipmentSet) {
 					view.print("Seleccione una opción (introduzca ID de empresa seleccionada):");
 					String selectionID = prompt.nextLine();
-					isShipmentSet = logisticController.setShipment(order.getId(), shippingLine, selectionID);
+					isShipmentSet = logisticController.setShipment(shippingLine, selectionID);
 					
 					if (!isShipmentSet) {
 						view.print("Opción no válida");
