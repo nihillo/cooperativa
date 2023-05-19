@@ -3,6 +3,7 @@ package view.command;
 import java.util.Scanner;
 
 import controller.CustomerController;
+import utils.DistanceUtils;
 import view.ConsoleView;
 
 /**
@@ -60,10 +61,24 @@ public class RegisterCustomerCommand implements Command {
 		String cityProvince = prompt.nextLine();
 		
 		view.print("Introduzca código postal:");
-		String zipCode = prompt.nextLine();
-		// TODO validación CP pertenece a territorio permitido
 		
-		customerController.registerCustomer(id, name, type, address, cityProvince, zipCode);
+		String zipCodeInput = null;
+		boolean validZipCode = false;
+		DistanceUtils distanceUtils = DistanceUtils.getInstance();
+		while (validZipCode == false && (zipCodeInput == null || !zipCodeInput.toUpperCase().equals("CANCEL"))) {
+			zipCodeInput = prompt.nextLine();
+			validZipCode = distanceUtils.isValidZipCode(zipCodeInput);
+			
+			if (!zipCodeInput.toUpperCase().equals("CANCEL") && !validZipCode) {
+				view.print("Sólo se permite el registro de clientes del territorio español peninsular.");
+				view.print("Introduzca un código postal válido, o bien CANCEL si desea salir del registro.");
+			}
+		}
+		
+		if (zipCodeInput.toUpperCase() != "CANCEL") {
+			customerController.registerCustomer(id, name, type, address, cityProvince, zipCodeInput);
+		}
+		
 		view.refreshMenu("CUSTOMERS");
 	}
 

@@ -30,4 +30,9 @@ public class DistanceUtils {
 		String lastThreeChars = destZipCode.substring(destZipCode.length() - 3);
 		return Integer.parseInt(lastThreeChars)/10;
 	}
+
+	public boolean isValidZipCode(String zipCode) {
+		String firstTwoChars = zipCode.substring(0, 2);
+		return distanceTable.isProvinceRegistered(firstTwoChars);
+	}
 }
