@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import model.logistic.Logistic;
 import model.logistic.LogisticCollection;
@@ -10,6 +11,8 @@ import model.producer.Producer;
 import model.product.Crop;
 import model.product.Product;
 import model.product.ProductCollection;
+import sampledata.ProductPrices;
+import sampledata.ProductType;
 import view.Table;
 
 public class ReportController extends Controller {
@@ -169,6 +172,42 @@ public class ReportController extends Controller {
 			
 			lines.add(line);
 		});
+		
+		Table report = new Table(header, lines, widths);
+		
+		return report;
+	}
+
+	public Table getPriceEvolution() {
+		
+		ArrayList<String> header = new ArrayList<String>();
+		ArrayList<Integer> widths = new ArrayList<Integer>();
+		
+		header.add("SEMANA");
+		widths.add(10);
+		
+		for (int i = 0; i < ProductType.values().length; i++) {
+			ProductType product = ProductType.values()[i];
+			header.add(product.name());
+			widths.add(8);
+		}
+		
+		ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
+		
+		ProductPrices productPrices = new ProductPrices();
+		for (int j = 1; j <= 52; j++) {
+			String weekID = "W" + String.format("%02d", j);
+			ArrayList<String> line = new ArrayList<String>();
+			line.add(weekID);
+			
+			for (int k = 0; k < ProductType.values().length; k++) {
+				ProductType product = ProductType.values()[k];							
+				HashMap<String, Double> prices = productPrices.get(product.name());
+				double weekPrice = prices.get(weekID); 
+				line.add(Double.toString(weekPrice));
+			}
+			lines.add(line);
+		}
 		
 		Table report = new Table(header, lines, widths);
 		
