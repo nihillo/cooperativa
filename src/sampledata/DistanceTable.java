@@ -63,5 +63,8 @@ public class DistanceTable {
 	public int getDistance(String firstTwoChars) {
 		return this.distanceTable.get(firstTwoChars);
 	}
-
+	
+	public boolean isProvinceRegistered(String firstTwoChars) {
+		return this.distanceTable.containsKey(firstTwoChars);
+	}
 }
