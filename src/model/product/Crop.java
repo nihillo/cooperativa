@@ -7,6 +7,8 @@ public class Crop {
 	private Product product;
 	private Float extension;
 	private int production;
+	private double benefit;
+	private double qtySold;
 	
 	
 	/**
@@ -26,6 +28,8 @@ public class Crop {
 		this.producerID = producerID;
 		this.extension = extension;
 		this.production = (int) (this.extension * this.product.getPerformance());
+		this.benefit = 0;
+		this.qtySold = 0;
 		
 		this.product.registerCrop(this);
 	}
@@ -77,5 +81,21 @@ public class Crop {
 	@Override
 	public String toString() {
 		return this.product.getId() + ": " + this.extension.toString();
+	}
+
+	public void addBenefit(double benefit) {
+		this.benefit += benefit;
+	}
+	
+	public double getBenefit() {
+		return benefit;
+	}
+
+	public void addQtySold(double qtySold) {
+		this.qtySold += qtySold;
+	}
+
+	public double getQtySold() {
+		return this.qtySold;
 	}
 }

@@ -1,9 +1,8 @@
-package view.menu;
+package view.command;
 
 import controller.ReportController;
 import view.ConsoleView;
-import view.command.Command;
-import view.command.ReportCommand;
+import view.ReportTable;
 
 public class PricesReportCommand extends ReportCommand implements Command {
 
@@ -13,8 +12,11 @@ public class PricesReportCommand extends ReportCommand implements Command {
 
 	@Override
 	protected void retrieveReport() {
-		// TODO Auto-generated method stub
+		// limpiar posibles ejecuciones previas
+		this.reportTables.clear();
 		
+		ReportTable reportTable = new ReportTable("Evolución semanal de precios por producto", reportController.getPriceEvolution());
+		this.reportTables.add(reportTable);
 	}
 
 }

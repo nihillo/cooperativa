@@ -10,6 +10,10 @@ public class OrderShipment {
 		this.orderID = orderID;
 		this.shipment = shipment;
 	}
+
+	public Shipment getShipment() {
+		return shipment;
+	}
 	
 	
 }
