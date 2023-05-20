@@ -1,11 +1,9 @@
 package model.order;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 import model.CollectionItem;
 import model.customer.Customer;
-import model.logistic.Logistic;
 import model.product.Product;
 import utils.DistanceUtils;
 

@@ -4,7 +4,6 @@ import model.order.Order;
 import model.order.Shipment;
 import model.order.ShipmentType;
 import model.order.ShippingLine;
-import sampledata.ShippingRate;
 
 /**
  * Clase SmallLogistic (empresa de pequeña logística)

@@ -2,7 +2,6 @@ package model.producer;
 
 import java.util.ArrayList;
 
-import model.producer.Producer.ProducerType;
 import model.product.Crop;
 
 /**

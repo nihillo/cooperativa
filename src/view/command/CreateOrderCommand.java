@@ -1,6 +1,5 @@
 package view.command;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -58,7 +57,6 @@ public class CreateOrderCommand implements Command {
 		
 		Customer customer = promptCustomer(prompt);	
 		Date deliveryDate = promptDeliveryDate(prompt);
-		Date placementDate = orderController.getPlacementDate(deliveryDate);
 		Product product = promptProduct(prompt);
 		int qty = promptQty(prompt, product, customer);
 	
