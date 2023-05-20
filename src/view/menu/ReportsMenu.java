@@ -9,6 +9,9 @@ import view.command.CoopBenefitReportCommand;
 import view.command.SetMenuCommand;
 import view.command.TotalSalesReportCommand;
 
+/**
+ * Clase ReportsMenu
+ */
 public class ReportsMenu extends Menu {
 	
 	ConsoleView view;

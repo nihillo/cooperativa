@@ -8,8 +8,16 @@ import model.producer.ProducerCollection;
 import view.ConsoleView;
 import view.ReportTable;
 
+/**
+ * Comando informe de beneficios por productor y producto
+ */
 public class ProducerReportCommand extends ReportCommand implements Command {
 
+	/**
+	 * Constructor
+	 * @param view
+	 * @param reportController
+	 */
 	public ProducerReportCommand(ConsoleView view, ReportController reportController) {
 		super(view, reportController);
 	}

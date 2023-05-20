@@ -1,7 +1,5 @@
 package model.customer;
 
-import model.customer.Customer.CustomerType;
-
 /**
  * Clase EndCustomer (Cliente final)
  * Hereda de Customer

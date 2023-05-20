@@ -5,14 +5,20 @@ import java.util.ArrayList;
 import controller.ReportController;
 import view.ConsoleView;
 import view.ReportTable;
-import view.Table;
 
+/**
+ * Clase abstracta ReportCommand
+ */
 public abstract class ReportCommand implements Command {
 	protected ConsoleView view;
 	protected ReportController reportController;
 	protected ArrayList<ReportTable> reportTables; 
 	
-	
+	/**
+	 * Constructor
+	 * @param view
+	 * @param reportController
+	 */
 	public ReportCommand(ConsoleView view, ReportController reportController) {
 		this.view = view;
 		this.reportController = reportController;
@@ -30,5 +36,8 @@ public abstract class ReportCommand implements Command {
 		});
 	}
 
+	/**
+	 * Obtiene el informe
+	 */
 	protected abstract void retrieveReport();
 }

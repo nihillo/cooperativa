@@ -4,8 +4,16 @@ import controller.ReportController;
 import view.ConsoleView;
 import view.ReportTable;
 
+/**
+ * Comando informe de beneficios de la cooperativa
+ */
 public class CoopBenefitReportCommand extends ReportCommand implements Command {
 
+	/**
+	 * Constructor
+	 * @param view
+	 * @param reportController
+	 */
 	public CoopBenefitReportCommand(ConsoleView view, ReportController reportController) {
 		super(view, reportController);
 	}

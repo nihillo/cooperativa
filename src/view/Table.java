@@ -2,19 +2,29 @@ package view;
 
 import java.util.ArrayList;
 
+/**
+ * Clase Table
+ */
 public class Table {
 	ArrayList<String> header;
 	ArrayList<ArrayList<String>> lines;
 	ArrayList<Integer> columnWidths;
 	
-	
+	/**
+	 * Constructor
+	 * @param header
+	 * @param lines
+	 * @param widths
+	 */
 	public Table(ArrayList<String> header, ArrayList<ArrayList<String>> lines, ArrayList<Integer> widths) {
 		this.header = header;
 		this.lines = lines;
 		this.columnWidths = widths;
 	}
 
-
+	/**
+	 * Renderiza la tabla por pantalla
+	 */
 	public void render() {
 		String format = "";
 		
