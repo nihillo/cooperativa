@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 import model.CollectionItem;
 import model.order.Order;
-import model.order.ProductLine;
 import sampledata.ProductType;
 
 /**
@@ -139,21 +138,8 @@ public class Product implements CollectionItem {
 		
 	}
 
-	public void registerOrder(Order order) {
-		orderHistory.add(order);
-		divideShareBenefit(order);
-	}
-
-	private void divideShareBenefit(Order order) {
-		ProductLine productLine = order.getProductLine();
-		double producerTotalBenefit = productLine.getBasePrice();
-		double totalQty = productLine.getQty();
-		this.cropShare.entrySet().forEach(entry -> {
-			CropShareItem cropShareItem = entry.getValue();
-			double coefficient = cropShareItem.getShareCoefficient();
-			cropShareItem.getCrop().addBenefit(coefficient * producerTotalBenefit);
-			cropShareItem.getCrop().addQtySold(coefficient * totalQty);
-		});
+	public void addOrderToHistory(Order order) {
+		orderHistory.add(order);	
 	}
 
 	public void discountStock(int qty) {

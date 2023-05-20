@@ -1,10 +1,9 @@
-package view.command;
-
-import java.util.ArrayList;
+package view.menu;
 
 import controller.ReportController;
 import view.ConsoleView;
-import view.ReportTable;
+import view.command.Command;
+import view.command.ReportCommand;
 
 public class TotalSalesReportCommand extends ReportCommand implements Command {
 
@@ -14,11 +13,9 @@ public class TotalSalesReportCommand extends ReportCommand implements Command {
 
 	@Override
 	protected void retrieveReport() {
-		// limpiar posibles ejecuciones previas
-		this.reportTables.clear();
-		
-		ReportTable reportTable = new ReportTable("Ventas totales por producto", reportController.getTotalSales());
-		this.reportTables.add(reportTable);
+		this.reportTitle = "Ventas totales por producto";
+		this.reportHeader = "PRODUCTO    --    CANTIDAD TOTAL KG    --    VENTA TOTAL €";
+		this.reportLines = reportController.getTotalSales();
 	}
 
 }

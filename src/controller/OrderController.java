@@ -75,7 +75,7 @@ public class OrderController extends Controller {
 	public void placeOrder(Order order) {
 		Product product = order.getProductLine().getProduct();
 		product.discountStock(order.getProductLine().getQty());		
-		product.registerOrder(order);
+		product.addOrderToHistory(order);
 		
 		Customer customer = order.getCustomer();
 		customer.addOrderToHistory(order);
