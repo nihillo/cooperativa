@@ -27,8 +27,8 @@ public class ReportsMenu extends Menu {
 		this.title = "===== INFORMES =====";
 		
 		this.executableItems.put("1", new MenuExecutableItem("Ventas totales por producto", new TotalSalesReportCommand(view, reportController)));
-		this.executableItems.put("2", new MenuExecutableItem("Beneficios por productor", new ProducerReportCommand(view, reportController)));
-		this.executableItems.put("3", new MenuExecutableItem("Beneficios por logística", new LogisticReportCommand(view, reportController)));
+		this.executableItems.put("2", new MenuExecutableItem("Beneficios de cada productor por producto", new ProducerReportCommand(view, reportController)));
+		this.executableItems.put("3", new MenuExecutableItem("Beneficios de cada empresa de logística", new LogisticReportCommand(view, reportController)));
 		this.executableItems.put("4", new MenuExecutableItem("Beneficios de la cooperativa por producto", new CoopBenefitReportCommand(view, reportController)));
 		this.executableItems.put("5", new MenuExecutableItem("Evolución semanal de precios por producto", new PricesReportCommand(view, reportController)));
 		this.executableItems.put("q", new MenuExecutableItem("Atrás", new SetMenuCommand(view, "MAIN")));
