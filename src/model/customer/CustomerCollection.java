@@ -67,6 +67,11 @@ public class CustomerCollection {
 		return collection.getAll();
 	}
 
+	/**
+	 * Devuelve un cliente por su id
+	 * @param id
+	 * @return
+	 */
 	public Customer get(String id) {
 		return collection.get(id);
 	}
