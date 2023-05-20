@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import model.CollectionItem;
 import model.order.Order;
+import model.order.ProductLine;
 import sampledata.ProductType;
 
 /**
@@ -113,6 +114,11 @@ public class Product implements CollectionItem {
 		}
 	}
 
+	/**
+	 * Devuelve el precio del producto para una determinada fecha
+	 * @param placementDate
+	 * @return
+	 */
 	public double getPrice(Date placementDate) {
 		
 		String week = "1";
@@ -138,11 +144,46 @@ public class Product implements CollectionItem {
 		
 	}
 
-	public void addOrderToHistory(Order order) {
-		orderHistory.add(order);	
+	/**
+	 * Registra un pedido en el historial del producto
+	 * @param order
+	 */
+	public void registerOrder(Order order) {
+		orderHistory.add(order);
+		divideShareBenefit(order);
 	}
 
+	/**
+	 * Reparte el beneficio de una venta entre los distintos
+	 * cultivos según sus coeficientes de participación en la
+	 * producción del producto
+	 * @param order
+	 */
+	private void divideShareBenefit(Order order) {
+		ProductLine productLine = order.getProductLine();
+		double producerTotalBenefit = productLine.getBasePrice();
+		double totalQty = productLine.getQty();
+		this.cropShare.entrySet().forEach(entry -> {
+			CropShareItem cropShareItem = entry.getValue();
+			double coefficient = cropShareItem.getShareCoefficient();
+			cropShareItem.getCrop().addBenefit(coefficient * producerTotalBenefit);
+			cropShareItem.getCrop().addQtySold(coefficient * totalQty);
+		});
+	}
+
+	/**
+	 * Descuenta una cantidad vendida del stock
+	 * @param qty
+	 */
 	public void discountStock(int qty) {
 		stock -= qty;		
+	}
+
+	/**
+	 * Devuelve el historial de pedidos del producto
+	 * @return
+	 */
+	public ArrayList<Order> getOrderHistory() {
+		return this.orderHistory;
 	}
 }

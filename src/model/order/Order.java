@@ -7,6 +7,9 @@ import model.customer.Customer;
 import model.product.Product;
 import utils.DistanceUtils;
 
+/**
+ * Clase pedido
+ */
 public class Order implements CollectionItem {
 	
 	public enum Status {CREATED, CONFIRMED}
@@ -27,6 +30,15 @@ public class Order implements CollectionItem {
 	private double basePrice;
 	private double totalPrice;
 
+	/**
+	 * Constructor
+	 * @param orderID
+	 * @param customer
+	 * @param placementDate
+	 * @param deliveryDate
+	 * @param product
+	 * @param qty
+	 */
 	public Order(String orderID, Customer customer, Date placementDate, Date deliveryDate, Product product, int qty) {
 		this.orderID = orderID;
 		this.status = Status.CREATED;
@@ -43,6 +55,9 @@ public class Order implements CollectionItem {
 		calculateShippingLines();
 	}
 
+	/**
+	 * Calcula y genera las líneas de envío necesarias
+	 */
 	private void calculateShippingLines() {
 		String destZipCode = customer.getAddress().getZipCode();
 		DistanceUtils distanceUtils = DistanceUtils.getInstance();
@@ -72,14 +87,25 @@ public class Order implements CollectionItem {
 		return orderID;
 	}
 
+	/**
+	 * Devuelve las lineas de envío
+	 * @return
+	 */
 	public ShippingLine[] getShippingLines() {
 		return shippingLines;
 	}
 
+	/**
+	 * Devuelve la linea de producto
+	 * @return
+	 */
 	public ProductLine getProductLine() {
 		return productLine;
 	}
 
+	/**
+	 * Calcula los totales
+	 */
 	public void calculateAmounts() {
 		this.basePrice = this.productLine.getTotalPrice();
 		
@@ -93,26 +119,50 @@ public class Order implements CollectionItem {
 		this.totalPrice = this.basePrice + this.tax;
 	}
 
+	/**
+	 * Devuelve el precio base
+	 * @return
+	 */
 	public double getBasePrice() {
 		return this.basePrice;
 	}
 
+
+	/**
+	 * Devuelve el tipo de IVA
+	 */
 	public double getTaxRate() {
 		return this.taxRate;
 	}
 	
+	/**
+	 * Devuelve el IVA
+	 * @return
+	 */
 	public double getTax() {
 		return this.tax;
 	}
 
+	/**
+	 * Devuelve el precio total
+	 * @return
+	 */
 	public double getTotalPrice() {
 		return this.totalPrice;
 	}
 
+	/**
+	 * Devuelve el cliente
+	 * @return
+	 */
 	public Customer getCustomer() {
 		return this.customer;
 	}
 
+	/**
+	 * Establece el estado del pedido
+	 * @param status
+	 */
 	public void setStatus(Status status) {
 		this.status = status;
 	}

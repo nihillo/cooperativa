@@ -40,10 +40,18 @@ public abstract class Customer implements CollectionItem {
 		return this.id;
 	}
 	
+	/**
+	 * Devuelve el tipo de cliente
+	 * @return
+	 */
 	public CustomerType getType() {
 		return this.type;
 	}
 	
+	/**
+	 * Devuelve la etiqueta del tipo de cliente
+	 * @return
+	 */
 	public String getTypeLabel() {
 		return this.typeLabel;
 	}
@@ -57,18 +65,38 @@ public abstract class Customer implements CollectionItem {
 		return infoLine;
 	}
 	
+	/**
+	 * Devuelve el porcentaje de beneficios para la cooperativa
+	 * de las ventas a este cliente
+	 * @return
+	 */
 	public abstract double getCoopBenefit();
 
+	/**
+	 * Devuelve rango de cantidades de venta permitidas para el cliente
+	 * @return
+	 */
 	public abstract int[] getAllowedQtyRange();
 
+	/**
+	 * Devuelve la dirección del cliente
+	 * @return
+	 */
 	public Address getAddress() {
 		return this.address;
 	}
 
+	/**
+	 * Devuelve el tipo de IVA aplicable al cliente
+	 * @return
+	 */
 	public double getTaxRate() {
 		return this.taxRate;
 	}
 
+	/**
+	 * Añade pedido al historial del cliente
+	 */
 	public void addOrderToHistory(Order order) {
 		orderHistory.add(order);		
 	}

@@ -53,7 +53,7 @@ public abstract class Logistic implements CollectionItem {
 	}
 	
 	/**
-	 * Devuelve el flag de tipo de logística: 
+	 * Devuelve el tipo de logística: 
 	 * B: gran logística, S: pequeña logística
 	 * @return
 	 */
@@ -61,16 +61,35 @@ public abstract class Logistic implements CollectionItem {
 		return this.type;
 	}
 	
+	/**
+	 * Devuelve etiqueta del tipo de logística
+	 * @return
+	 */
 	public String getTypeLabel() {
 		return this.typeLabel;
 	}
 	
+	/**
+	 * Devuelve el nombre
+	 * @return
+	 */
 	public String getName() {
 		return this.name;
 	}
 
+	/**
+	 * Obtener oferta de envío para el pedido
+	 * @param order
+	 * @return
+	 */
 	public abstract Shipment getShipmentQuote(Order order);
 	
+	/**
+	 * Devuevle el precio por distancia aplicable
+	 * @param order
+	 * @param shippingLine
+	 * @return
+	 */
 	protected double pricePerDistance(Order order, ShippingLine shippingLine) {
 		boolean isPerishableProduct = order.getProductLine().isPerishable();
 		double rate = ShippingRate.getRate(isPerishableProduct, this.type);
@@ -80,6 +99,12 @@ public abstract class Logistic implements CollectionItem {
 		return price;
 	}
 	
+	/**
+	 * Devuelve el precio por distancia y peso aplicable
+	 * @param order
+	 * @param shippingLine
+	 * @return
+	 */
 	protected double pricePerDistanceWeight(Order order, ShippingLine shippingLine) {
 		// 0,01 * precio de referencia del producto
 		boolean isPerishableProduct = order.getProductLine().isPerishable();
@@ -91,15 +116,44 @@ public abstract class Logistic implements CollectionItem {
 		return price;
 	}
 	
+	/**
+	 * Calcula coeficiente de variación para generación de ofertas de envío
+	 * @return
+	 */
 	protected double calculateVariationRate() {
 		double min = 0.85;
 		double max = 1.15;
 		return (double) ((Math.random() * (max - min)) + min);
 	}
 
-
+	/**
+	 * Añade un envío al historial
+	 * @param orderID
+	 * @param shipment
+	 */
 	public void addOrderShipment(String orderID, Shipment shipment) {
 		OrderShipment orderShipment = new OrderShipment(orderID, shipment);
 		orderShipmentHistory.add(orderShipment);
+	}
+
+	/**
+	 * Devuelve el historial de envíos
+	 * @return
+	 */
+	public ArrayList<OrderShipment> getOrderShipmentHistory() {
+		return orderShipmentHistory;
+	}
+
+	/**
+	 * Devuelve el beneficio total del año fiscal
+	 * @return
+	 */
+	public double getBenefit() {
+		double benefit = 0;
+		for (OrderShipment orderShipment : orderShipmentHistory) {
+			benefit += orderShipment.getShipment().getPrice();
+		}
+		
+		return benefit;
 	}
 }

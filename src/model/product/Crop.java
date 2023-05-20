@@ -7,6 +7,8 @@ public class Crop {
 	private Product product;
 	private Float extension;
 	private int production;
+	private double benefit;
+	private double qtySold;
 	
 	
 	/**
@@ -77,5 +79,37 @@ public class Crop {
 	@Override
 	public String toString() {
 		return this.product.getId() + ": " + this.extension.toString();
+	}
+
+	/**
+	 * Añade beneficios de una venta realizada
+	 * @param benefit
+	 */
+	public void addBenefit(double benefit) {
+		this.benefit += benefit;
+	}
+	
+	/**
+	 * Devuelve los beneficios obtenidos por el cultivo
+	 * @return
+	 */
+	public double getBenefit() {
+		return benefit;
+	}
+
+	/**
+	 * Añade cantidad de una venta realizada
+	 * @param qtySold
+	 */
+	public void addQtySold(double qtySold) {
+		this.qtySold += qtySold;
+	}
+
+	/**
+	 * Devuelve la cantidad total vendida procedente del cultivo
+	 * @return
+	 */
+	public double getQtySold() {
+		return this.qtySold;
 	}
 }
