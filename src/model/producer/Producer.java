@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import model.CollectionItem;
 import model.product.Crop;
-import view.Table;
 
 /**
  * Clase Producer (Productor)
