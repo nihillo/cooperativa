@@ -68,10 +68,19 @@ public class OrderCollection {
 		return collection.getAll();
 	}
 	
+	/**
+	 * Devuelve un pedido por su ID
+	 * @param id
+	 * @return
+	 */
 	public Order get(String id) {
 		return collection.get(id);
 	}
 	
+	/**
+	 * Devuelve el siguiente ID de pedido disponible
+	 * @return
+	 */
 	public String getNextAvailableOrderID() {
 		if (collection.size() == 0) {
 			return "001";

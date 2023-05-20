@@ -15,8 +15,15 @@ import sampledata.ProductPrices;
 import sampledata.ProductType;
 import view.Table;
 
+/**
+ * Controlador de informes
+ */
 public class ReportController extends Controller {
 
+	/**
+	 * Obtiene el informe de ventas totales
+	 * @return
+	 */
 	public Table getTotalSales() {
 		
 		ArrayList<String> header = new ArrayList<String>();
@@ -60,11 +67,21 @@ public class ReportController extends Controller {
 		return report;
 	}
 	
+	/**
+	 * Devuelve el título de tabla de un productor para el informe de beneficios por productor y producto
+	 * @param producer
+	 * @return
+	 */
 	public String getProducerReportTitle(Producer producer) {
 		String producerStr = producer.getId() + " - " + producer.getName() + " (" + producer.getType() + ")";
 		return "Productor: " + producerStr;
 	}
 
+	/**
+	 * Devuelve el informe de beneficios por productor y producto
+	 * @param producer
+	 * @return
+	 */
 	public Table getProducerBenefit(Producer producer) {
 		ArrayList<String> header = new ArrayList<String>();
 		header.add("PRODUCTO");
@@ -98,6 +115,10 @@ public class ReportController extends Controller {
 		return report;
 	}
 
+	/**
+	 * Obtiene el informe de beneficios por logística
+	 * @return
+	 */
 	public Table getBenefitsByLogistic() {
 		ArrayList<String> header = new ArrayList<String>();
 		header.add("LOGÍSTICA");
@@ -136,6 +157,11 @@ public class ReportController extends Controller {
 		return report;
 	}
 
+
+	/**
+	 * Obtiene el informe de beneficios de la cooperativa
+	 * @return
+	 */
 	public Table getCoopBenefit() {
 		ArrayList<String> header = new ArrayList<String>();
 		header.add("PRODUCTO");
@@ -178,6 +204,11 @@ public class ReportController extends Controller {
 		return report;
 	}
 
+
+	/**
+	 * Obtiene el informe de evolución de precios
+	 * @return
+	 */
 	public Table getPriceEvolution() {
 		
 		ArrayList<String> header = new ArrayList<String>();

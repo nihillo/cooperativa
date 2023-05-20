@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import model.CollectionItem;
 import model.product.Crop;
-import view.Table;
 
 /**
  * Clase Producer (Productor)
@@ -68,14 +67,26 @@ public abstract class Producer implements CollectionItem {
 		return this.typeLabel;
 	}
 	
+	/**
+	 * Devuelve el tipo de productor
+	 * @return
+	 */
 	public String getType() {
 		return this.typeLabel;
 	}
 
+	/**
+	 * Devuelve el nombre
+	 * @return
+	 */
 	public String getName() {
 		return this.name;
 	}
 
+	/**
+	 * Devuelve los cultivos del productor
+	 * @return
+	 */
 	public ArrayList<Crop> getCrops() {
 		return this.crops;
 	}

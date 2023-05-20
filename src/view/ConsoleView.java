@@ -16,7 +16,6 @@ import view.menu.Menu;
 import view.menu.MenuExecutableItem;
 import view.menu.OrdersMenu;
 import view.menu.ProducersMenu;
-import view.menu.ReportsMenu;
 
 
 /**
@@ -63,7 +62,6 @@ public class ConsoleView
     					(LogisticController) controllers.get("LOGISTIC")
     	));
     	menus.put("ORDERS",  new OrdersMenu(this, (OrderController) controllers.get("ORDER")));
-    	menus.put("REPORTS", new ReportsMenu(this, (ReportController) controllers.get("REPORT")));
     	
     	setCurrentMenu("MAIN");
     }

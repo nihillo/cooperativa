@@ -4,8 +4,16 @@ import controller.ReportController;
 import view.ConsoleView;
 import view.ReportTable;
 
+/**
+ * Comando informe de beneficios por logística
+ */
 public class LogisticReportCommand extends ReportCommand implements Command {
 
+	/**
+	 * Constructor
+	 * @param view
+	 * @param reportController
+	 */
 	public LogisticReportCommand(ConsoleView view, ReportController reportController) {
 		super(view, reportController);
 	}

@@ -24,11 +24,20 @@ import sampledata.SystemData;
  */
 public class OrderController extends Controller {
 	private OrderCollection orderCollection;
-
+	
+	/**
+	 * Constructor
+	 */
 	public OrderController() {
 		this.orderCollection = OrderCollection.getInstance();
 	}
-
+	
+	/**
+	 * Convierte string fecha a objeto Date
+	 * @param deliveryDateStr
+	 * @return Date
+	 * @throws Exception
+	 */
 	public Date parseDate(String deliveryDateStr) throws Exception {
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		dateFormat.setLenient(false);
@@ -50,7 +59,12 @@ public class OrderController extends Controller {
 		
 		return date;
 	}
-
+	
+	/**
+	 * Obtiene fecha de realización del pedido a partir de la fecha de entrega provista
+	 * @param deliveryDate
+	 * @return
+	 */
 	public Date getPlacementDate(Date deliveryDate) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(deliveryDate);
@@ -60,6 +74,15 @@ public class OrderController extends Controller {
 		return placementDate;
 	}
 	
+	/**
+	 * Crea pedido
+	 * @param customer
+	 * @param deliveryDate
+	 * @param product
+	 * @param qty
+	 * @return
+	 * 
+	 */
 	public Order createOrder(Customer customer, Date deliveryDate, Product product, int qty) {
 		String orderID = orderCollection.getNextAvailableOrderID();
 		Date placementDate = getPlacementDate(deliveryDate);
@@ -68,10 +91,18 @@ public class OrderController extends Controller {
 		return order;
 	}
 	
+	/**
+	 * Calcula totales del pedido
+	 * @param order
+	 */
 	public void calculateAmounts(Order order) {
 		order.calculateAmounts();	
 	}
 	
+	/**
+	 * Confirma pedido y lo añade a los registros
+	 * @param order
+	 */
 	public void placeOrder(Order order) {
 		Product product = order.getProductLine().getProduct();
 		product.discountStock(order.getProductLine().getQty());		
@@ -92,6 +123,10 @@ public class OrderController extends Controller {
 		order.setStatus(Order.Status.CONFIRMED);
 	}
 
+	/**
+	 * Carga datos de prueba de pedidos
+	 * @param logisticController
+	 */
 	public void loadSampleOrders(LogisticController logisticController) {
 		SampleOrder.createSampleOrders(this, logisticController);		
 	}	

@@ -83,18 +83,34 @@ public class Crop {
 		return this.product.getId() + ": " + this.extension.toString();
 	}
 
+	/**
+	 * Añade beneficios de una venta realizada
+	 * @param benefit
+	 */
 	public void addBenefit(double benefit) {
 		this.benefit += benefit;
 	}
 	
+	/**
+	 * Devuelve los beneficios obtenidos por el cultivo
+	 * @return
+	 */
 	public double getBenefit() {
 		return benefit;
 	}
 
+	/**
+	 * Añade cantidad de una venta realizada
+	 * @param qtySold
+	 */
 	public void addQtySold(double qtySold) {
 		this.qtySold += qtySold;
 	}
 
+	/**
+	 * Devuelve la cantidad total vendida procedente del cultivo
+	 * @return
+	 */
 	public double getQtySold() {
 		return this.qtySold;
 	}

@@ -27,7 +27,9 @@ public class ProductCollection {
 	private static ProductCollection instance;
 	private Collection<Product> collection;
 	
-	
+	/**
+	 * Constructor
+	 */
 	private ProductCollection() {
 		collection = new Collection<Product>();
 		
@@ -76,10 +78,19 @@ public class ProductCollection {
 		return ids;
 	}
 
+	/**
+	 * Devuelve un producto por su ID
+	 * @param id
+	 * @return
+	 */
 	public Product get(String id) {
 		return collection.get(id);
 	}
 
+	/**
+	 * Devuelve todos los productos de la colección
+	 * @return
+	 */
 	public ArrayList<Product> getAll() {
 		return collection.getAll();
 	}

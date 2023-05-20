@@ -4,8 +4,16 @@ import controller.ReportController;
 import view.ConsoleView;
 import view.ReportTable;
 
+/**
+ * Comando informe de evolución de precios
+ */
 public class PricesReportCommand extends ReportCommand implements Command {
 
+	/**
+	 * Constructor
+	 * @param view
+	 * @param reportController
+	 */
 	public PricesReportCommand(ConsoleView view, ReportController reportController) {
 		super(view, reportController);
 	}
