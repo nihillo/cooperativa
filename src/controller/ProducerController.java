@@ -19,6 +19,9 @@ public class ProducerController extends Controller {
 	
 	private ProducerCollection producerCollection;
 	
+	/**
+	 * Constructor
+	 */
 	public ProducerController() {
 		producerCollection = ProducerCollection.getInstance();
 	}

@@ -73,12 +73,20 @@ public class Collection<E> {
 		return allElements;
 	}
 
+	/**
+	 * Devuelve el último elemento de la colección
+	 * @return
+	 */
 	public E getLast() {
 		String lastKey = collection.keySet().toArray()[collection.size() - 1].toString();
 		E lastItem = collection.get(lastKey);
 		return lastItem; 
 	}
 
+	/**
+	 * Devuelve el tamaño de la colección
+	 * @return
+	 */
 	public int size() {
 		return collection.size();
 	}

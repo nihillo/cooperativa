@@ -71,6 +71,11 @@ public class LogisticCollection {
 		return collection.getAll();
 	}
 
+	/**
+	 * Devuelve todas las logísticas de un determinado tipo
+	 * @param type
+	 * @return
+	 */
 	public ArrayList<Logistic> getAllByType(ShipmentType type) {
 		ArrayList<Logistic> allLogistics = collection.getAll();
 		ArrayList<Logistic> filteredLogistics = new ArrayList<Logistic>();

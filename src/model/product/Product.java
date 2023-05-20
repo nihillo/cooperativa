@@ -114,6 +114,11 @@ public class Product implements CollectionItem {
 		}
 	}
 
+	/**
+	 * Devuelve el precio del producto para una determinada fecha
+	 * @param placementDate
+	 * @return
+	 */
 	public double getPrice(Date placementDate) {
 		
 		String week = "1";
@@ -139,11 +144,21 @@ public class Product implements CollectionItem {
 		
 	}
 
+	/**
+	 * Registra un pedido en el historial del producto
+	 * @param order
+	 */
 	public void registerOrder(Order order) {
 		orderHistory.add(order);
 		divideShareBenefit(order);
 	}
 
+	/**
+	 * Reparte el beneficio de una venta entre los distintos
+	 * cultivos según sus coeficientes de participación en la
+	 * producción del producto
+	 * @param order
+	 */
 	private void divideShareBenefit(Order order) {
 		ProductLine productLine = order.getProductLine();
 		double producerTotalBenefit = productLine.getBasePrice();
@@ -156,10 +171,18 @@ public class Product implements CollectionItem {
 		});
 	}
 
+	/**
+	 * Descuenta una cantidad vendida del stock
+	 * @param qty
+	 */
 	public void discountStock(int qty) {
 		stock -= qty;		
 	}
 
+	/**
+	 * Devuelve el historial de pedidos del producto
+	 * @return
+	 */
 	public ArrayList<Order> getOrderHistory() {
 		return this.orderHistory;
 	}

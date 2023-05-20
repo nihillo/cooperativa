@@ -30,6 +30,11 @@ public class ProductController extends Controller {
 		return productIDs; 				
 	}
 
+	/**
+	 * Devuelve producto a partir de ID
+	 * @param productID
+	 * @return
+	 */
 	public Product getProduct(String productID) {
 		return productCollection.get(productID);
 	}
