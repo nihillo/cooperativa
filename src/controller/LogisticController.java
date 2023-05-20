@@ -74,6 +74,10 @@ public class LogisticController extends Controller {
 		}
 	}
 
+	/**
+	 * Genera ofertas para envíos
+	 * @param order
+	 */
 	public void generateShipmentQuotes(Order order) {
 		
 		for(ShippingLine shippingLine : order.getShippingLines()) {
@@ -88,7 +92,13 @@ public class LogisticController extends Controller {
 			}
 		}
 	}
-
+	
+	/**
+	 * Guarda un shipment por id en una linea de pedido
+	 * @param shippingLine
+	 * @param selectionID
+	 * @return
+	 */
 	public boolean setShipment(ShippingLine shippingLine, String selectionID) {
 		Shipment shipment = shippingLine.getShipmentQuote(selectionID);
 		
